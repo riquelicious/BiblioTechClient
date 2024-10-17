@@ -1,0 +1,25 @@
+.Main-SideBar {
+	width: 250px;
+	height: 100%;
+	background-color: white;
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: 50px auto;
+	grid-column:1 ;
+	grid-row: 2;
+	border: solid #cccccc;
+	border-width: 0px 1px 0px 0px;
+}
+
+.Sidebar-Icons {
+	grid-column: 1;
+	width: 50px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background: radial-gradient(at top right,#7B59E2, #3220E6);
+	box-sizing: border-box;
+}
+

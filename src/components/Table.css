@@ -1,0 +1,55 @@
+.TableContainer {
+	box-sizing: border-box;
+	margin: 5%;
+	width: 90%;
+	height: 590px;
+	padding: 20px;
+	border-radius: 10px;
+	border: 1px solid #cccccc;
+}
+
+.BooksTable {
+	display: table;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.BooksTable > tbody {
+	display: table-row-group;
+	width: 100%;
+}
+
+.BooksTable > tbody > tr {
+	display: table-row;
+	text-align: left;
+}
+
+.BooksTable > tbody > tr > th,
+.BooksTable > tbody > tr > td {
+	padding: 0px 0px 0px 30px;
+	box-sizing: border-box;
+	display: table-cell;
+	height: 30px;
+	font-size: 12px;
+}
+
+#table-header {
+	background-color: #5B40E4;
+	font-weight: bold;
+	color: white;
+
+}
+
+.table-row {
+	color: #4D4D4D;
+}
+
+.BooksTable > tbody > tr > th:first-child{
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.BooksTable > tbody > tr > th:last-child{
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
