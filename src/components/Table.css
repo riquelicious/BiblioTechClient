@@ -8,6 +8,8 @@
 	border: 1px solid #cccccc;
 }
 
+
+
 .BooksTable {
 	display: table;
 	width: 100%;
@@ -24,13 +26,33 @@
 	text-align: left;
 }
 
-.BooksTable > tbody > tr > th,
-.BooksTable > tbody > tr > td {
-	padding: 0px 0px 0px 30px;
-	box-sizing: border-box;
-	display: table-cell;
-	height: 30px;
+.BooksTable > tbody > tr > th:not(.checkbox-container),
+.BooksTable > tbody > tr > td:not(.checkbox-container) {
+	height: 50px;
 	font-size: 12px;
+	font-weight: bold;
+	max-width: 100px;
+}
+
+.BooksTable > tbody > tr:not(:first-child) {
+	border: #808080 1px solid;
+}
+
+.BooksTable > tbody > tr > th:not(.checkbox-container) > p,
+.BooksTable > tbody > tr > td:not(.checkbox-container) > p {
+	width: 200px !important;
+
+}
+
+.checkbox-container {
+	width: 50px !important;
+	max-width: 50px !important;
+}
+
+.checkbox-container > div {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 #table-header {
@@ -40,16 +62,88 @@
 
 }
 
-.table-row {
+.TableRow {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 50px 1fr 1fr 1fr 1fr 1fr;
+	height: 50px;
+	font-size: 12px;
+	align-content: center;
+	border-radius: 10px;
+	border: #CCCCCC 1px solid;
+}
+
+.TableRow > div {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+}
+
+.TableHeader {
+	background-color: #5B40E4;
+	color: white;
+	font-weight: bold;
+}
+
+.TableData {
+	font-weight: bold;
 	color: #4D4D4D;
 }
 
+.TableHeader > div > input[type="checkbox"] {
+	display: none;
+}
+
+.TableHeader > div > label {
+	display: inline-block;
+	width: 15px;
+	height: 15px !important;
+	background-color: white;
+	border-radius: 5px; /* For rounded corners */
+	cursor: pointer;
+}
+
+.TableHeader > div > input[type="checkbox"]:checked + label::before {
+	content: '';
+	width: 9px;
+	height: 9px !important;
+	border-radius: 5px; /* For rounded corners */
+	display: inline-block;
+	box-sizing: border-box;
+	background-color:#5B40E4;
+}
+
+.TableData > div > input[type="checkbox"] {
+	display: none;
+}
+
+.TableData > div > label {
+	display: inline-block;
+	width: 15px;
+	height: 15px !important;
+	background-color: #808080;
+	border-radius: 5px; /* For rounded corners */
+	cursor: pointer;
+}
+
+.TableData > div > input[type="checkbox"]:checked + label::before {
+	content: '';
+	width: 9px;
+	height: 9px !important;
+	border-radius: 5px; /* For rounded corners */
+	display: inline-block;
+	box-sizing: border-box;
+	background-color:white;
+}
+
 .BooksTable > tbody > tr > th:first-child{
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .BooksTable > tbody > tr > th:last-child{
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 }

@@ -1,21 +1,46 @@
 
 
-const server = 'http://localhost:3030';
+const server = 'http://localhost:5000'; //edit if needed
 
-//fetch_values();
-export function fetch_values(params) {
-	// Example of a GET request
-	fetch( server +'/api/endpoint')
+export function send_books(books) {
+	fetch(`${server}/insert_books`, {
+		method: 'POST',
+		body: JSON.stringify({books: books}),
+		headers: { 'Content-Type': 'application/json'
+
+		}
+	})
 	.then(response => {
-	if (!response.ok) {
-		throw new Error('Network response was not ok');
-	}
-	return response.json(); // or response.text() for plain text
+		if (!response.ok) {
+			throw new Error('Network response was not ok');
+		}
+		return response.json();
 	})
 	.then(data => {
-	console.log(data); // Handle the response data
+		console.log(data);
 	})
 	.catch(error => {
-	console.error('There was a problem with the fetch operation:', error);
+		console.error('There was a problem with the fetch operation:', error);
+	})
+	.catch(error => {
+		console.error('There was a problem with the fetch operation:', error);
 	});
+}
+
+
+export function fetch_books() {
+	return fetch(`${server}/select_books`)
+	.then(response => {
+		if (!response.ok) {
+			throw new Error('Network response was not ok');
+		}
+		return response.json();
+	})
+	// .then(data => {
+	// 	return(data);
+	// })
+	.catch(error => {
+		console.error('There was a problem with the fetch operation:', error);
+		return([]);
+	})
 }
