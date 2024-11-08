@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import './app.css';
-import NavigationSidebar from './components/NavigationSideBar.jsx';
-import TitleBar from './components/TitleBar.jsx';
-import Table from './components/Table.jsx';
+import React, { useEffect, useState } from "react";
+import "./app.css";
+import NavigationSidebar from "./components/NavigationSideBar.jsx";
+import TitleBar from "./components/TitleBar.jsx";
+import Table from "./components/Table/Table.jsx";
 
 function App() {
-	return (
-		<div className='App'>
-			<TitleBar />
-			<NavigationSidebar />
-			<div className='Main-Window'>
-				<Table />
-			</div>
-		</div>
-	);
+  return (
+    <div className="App">
+      <TitleBar />
+      <NavigationSidebar />
+      <div className="Main-Window">
+        <Table />
+      </div>
+    </div>
+  );
 }
 
 export default App;
@@ -24,7 +24,6 @@ export default App;
  * #231994
  * #1B1372
  * #130E50
- * 
- * 
+ *
+ *
  */
-

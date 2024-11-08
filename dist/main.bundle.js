@@ -913,7 +913,7 @@ module.exports = require("util");
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -927,14 +927,14 @@ module.exports = require("util");
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 var __webpack_exports__ = {};
 /*!*********************!*\
@@ -1001,7 +1001,7 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and import them here.
 ipcMain.on('message-from-renderer', (event, arg) => {
   console.log(arg); // Print the message from React
-
+	
   // Send a reply back to the renderer
   event.sender.send('message-from-main', 'Hello from the main process!');
 });
