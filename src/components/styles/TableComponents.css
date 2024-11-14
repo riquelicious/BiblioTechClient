@@ -1,0 +1,251 @@
+
+.main-table {
+	display:table;
+	min-width: 500px;
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	border-collapse: collapse;
+	gap: none;
+	border: #cccccc 1px solid;
+}
+
+.main-table thead, .main-table tbody tr {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.main-table > tbody {
+	display: block;
+	overflow-y: scroll;
+	height: calc(100% - var(--row-height));
+}
+
+
+.main-table > thead > tr > th, .main-table > tbody > tr > td {
+	font-size: 12px;
+	height: var(--row-height);
+	box-sizing: border-box;
+	padding: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.main-table > thead > tr > th {
+	background-color: #5B40E4;
+	color: white;
+}
+
+.main-table > tbody > tr > td {
+	color: #6e6e6e;
+	transition: all 0.08s ease;
+	border: #cccccc solid;
+	border-width: 0px 0px 1px 0px;
+}
+
+.main-table > tbody > tr {
+	animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.main-table > tbody > tr:hover > td {
+	background-color: white;
+	color: #5B40E4;
+}
+
+.main-table > tbody > tr > td > div {
+	pointer-events: none;
+}
+
+.checkbox {
+	width: var(--row-height);
+	text-align: center;
+
+}
+
+.checkbox > div {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+.checkbox > div > input[type="checkbox"] {
+	display: none;
+}
+
+.checkbox > div > label {
+	display: flex;
+	width: 15px;
+	height: 15px;
+	background-color: #00000080;
+	cursor: pointer;
+	justify-content: center;
+	align-items: center;
+	border-radius: 2px;
+}
+
+.checkbox > div > input[type="checkbox"]:checked + label::before {
+	content: '🗸';
+	border-radius: 5px; /* For rounded corners */
+	display: inline-block;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.checkbox > div > input[type="checkbox"]:checked + label::before {
+	font-weight: bold;
+	color: white;
+}
+
+
+.DataStatus > div > p {
+	padding: 0px;
+	margin: 0px;
+}
+
+.DataStatus > div {
+	height: min-content;
+	width: 60px;
+	padding: 2px;
+	border-radius: 2px;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	border: #5B40E4 1px solid;
+
+
+}
+
+.DataStatusAvailable > div{
+	background-color: white;
+	color: #5B40E4;
+}
+
+
+.DataStatusBorrowed > div {
+	background-color: #5B40E4;
+	color: #eeeeee;
+}
+
+.search-box {
+	min-width: 300px;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 30px;
+}
+
+.search-box > button {
+	border: none;
+	background-color: #5B40E4;
+	color: white;
+	height: 30px;
+}
+
+.search-input {
+	border: none;
+	height: 100%;
+	width: 100%	;
+	padding: 10px;
+	border: #cccccc solid 1px;
+}
+
+.search-input:focus {
+	outline: none;
+}
+
+.search-input::-webkit-search-cancel-button {
+	display: none;
+}
+
+.search-filter {
+	position: relative;
+	width: fit-content;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 1px;
+}
+
+.search-filter > p {
+	left: 0px;
+	top: -16px;
+	font-size: 12px;
+	margin: 0px;
+	text-align: left;
+	font-size: 12px;
+	padding: 10px;
+	color: #5B40E4;
+	font-weight: bold;
+}
+.button-container {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	gap: 0px;
+	text-align: left;
+	width: fit-content;
+}
+
+.button-container  > div:first-child > label {
+	border-width: 1px 0px 1px 1px;
+}
+
+.button-container  > div:last-child > label {
+	border-width: 1px 1px 1px 0px;
+}
+
+
+
+.button-container > button {
+	width: 100px;
+}
+
+.filter-item > input[type="radio"] {
+	display: none;
+}
+
+.filter-item > label {
+	display: flex;
+	font-size: 12px;
+	height: 30px;
+	align-items: center;
+	background-color: white;
+	border: #5B40E4 solid;
+	border-width: 1px 0px 1px 0px;
+	width: 60px;
+	color: #5B40E4;
+	justify-content: center;
+}
+
+@keyframes pop-out {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.05);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.filter-item > input[type="radio"]:checked + label {
+	animation: pop-out 0.2s ease-in-out;
+	color: white;
+	background-color: #5B40E4;
+}

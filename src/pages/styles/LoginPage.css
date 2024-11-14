@@ -1,0 +1,108 @@
+.LoginPage {
+	width: 100vw;
+	display: grid;
+	grid-template-columns: 45% 55%;
+}
+
+/* ? Display Panel */
+
+.DisplayPanel {
+	background: radial-gradient(at top right, #7B59E2, #3220E6);
+	display: grid;
+	grid-column: 2/3;
+	justify-items: center;
+	align-items: center;
+	grid-template-rows: 1fr 1fr;
+	color: white;
+}
+
+.DisplayPanel > img {
+	width:50%;
+	align-self:self-end;
+}
+
+
+.DisplayPanel > div > p {
+	font-size: 14px;
+	margin: 0px;
+}
+
+.DisplayPanel > div > h3 {
+	margin: 0px;
+}
+
+/* ? Login Form */
+
+.LoginForm, .SignUpForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.LoginForm > div, .SignUpForm > div{
+	padding: 20px 0px 20px 0px;
+}
+
+.textbox-container {
+	display: flex;
+	flex-direction: column;
+	width: 77%;
+	max-width: 350px;
+	gap: 20px;
+}
+
+.login-textbox {
+	width: 100%;
+
+}
+
+.default-button {
+	width: 100%;
+}
+
+/* Login Header */
+
+.login-header, .sign-in-header {
+	display: flex;
+	flex-direction: column;
+	align-content:start;
+	width: 77%;
+	max-width: 350px;
+}
+
+.login-header > img, .sign-in-header > img {
+	height: 40px;
+	width: fit-content;
+	margin: 5px;
+}
+
+.login-header > h1, .login-header > p , .sign-in-header > h1, .sign-in-header > p {
+	margin: 5px;
+	text-align: left;
+}
+
+.login-header > p, .sign-in-header > p {
+	font-size: 14px;
+	color: #6e6e6e;
+}
+
+.login-header > h1, .sign-in-header > h1 {
+	font-size: 30px;
+}
+
+.button-container {
+	display: flex;
+	flex-direction: column;
+	width: 77%;
+	max-width: 350px;
+	gap: 10px;
+	text-align: left;
+}
+
+.button-container > a {
+	text-decoration: none;
+	font-size: 0.8rem;
+	color:#3220E6;
+	/* color: #6e6e6e; */
+}

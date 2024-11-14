@@ -1,0 +1,12 @@
+
+.DashBoardWindow {
+	position: relative;
+	display: grid;
+	grid-template-columns: 200px auto;
+}
+
+.sidebar-panel {
+	background-color: white;
+	width: 200px;
+	border-right: 1px solid #cccccc;
+}

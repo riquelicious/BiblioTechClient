@@ -2,46 +2,27 @@
 
 const server = "http://localhost:5000"; //edit if needed
 
-
-// export function fetch_books(pageNumber = 0) {
-// 	return fetch(`${server}/select_books?page=${pageNumber}`, {
-// 		// Pass pageNumber in the query string
-// 		method: "GET",
-// 		headers: { "Content-Type": "application/json" },
-// 	})
-// 		.then((response) => {
-// 			if (!response.ok) {
-// 				throw new Error("Network response was not ok");
-// 			}
-// 			return response.json();
-// 		})
-// 		.catch((error) => {
-// 			console.error("There was a problem with the fetch operation:", error);
-// 			return [];
-// 		});
-// }
-
-// ipcMain.handle("fetch-books", async (event, pageNumber) => {
-// 	console.log(typeof pageNumber);
-
-// 	return fetch_books(pageNumber);
-// });
-
-export function get_request(address = "") {
+export function get_request(address = "", retries = 3) {
 	return fetch(`${server}/${address}`, {
-		// Pass pageNumber in the query string
 		method: "GET",
 		headers: { "Content-Type": "application/json" },
 	})
 		.then((response) => {
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
+
 			}
 			return response.json();
 		})
 		.catch((error) => {
-			console.error("There was a problem with the fetch operation:", error);
-			return [];
+			console.error("Fetch error:", error);
+			if (retries > 0) {
+				console.warn(`Retrying... (${3 - retries + 1})`);
+				setTimeout(() => get_request(address, retries - 1), 1000);
+			} else {
+				console.error("Max retries reached.");
+				return []; // Fallback value
+			}
 		});
 }
 

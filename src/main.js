@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("node:path");
-import "./components/MenuControls.js";
-import "./components/API/Database.js";
+import "./hooks/MenuControls.js";
+import "./API/Database.js";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -24,9 +24,12 @@ const createWindow = () => {
 			preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
 			nodeIntegration: false, // It's recommended to disable this for security
 			contextIsolation: true, // Use this for security reasons
+			zoomFactor: 1,
 		},
 	});
-
+	mainWindow.webContents.on('did-navigate', (event, url) => {
+		console.log('Navigated to:', url);
+	});
 	mainWindow.webContents.session.webRequest.onHeadersReceived(
 		(details, callback) => {
 			callback({

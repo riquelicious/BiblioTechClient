@@ -1,0 +1,44 @@
+/* textbox */
+
+.logo-text-box {
+	position: relative;
+	display: grid;
+	grid-template-columns: 30px 1fr;
+	justify-content: center;
+	align-items: center;
+	height: 30px;
+	border: solid 1px #cccccc;
+	border-radius: 10px;
+}
+
+.logo-text-box > img {
+	padding: 5px;
+	height: max-content;
+}
+
+.logo-text-box > input{
+	border: none;
+	outline: none;
+}
+
+/* button */
+
+.default-button {
+	border: none;
+	background-color: white;
+	border: #5B40E4 solid 1px;
+	border-radius: 10px;
+	min-height: 2rem;
+	color: #5B40E4;
+	transition: all 0.1s ease;
+}
+
+.default-button:hover {
+	/* transform: scale(1.05); */
+}
+
+.default-button:active {
+	animation: click 0.1s ease-in-out;
+	background-color: #5B40E4;
+	color: white;
+}

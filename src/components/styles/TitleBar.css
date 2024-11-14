@@ -14,6 +14,9 @@
 	border-top: 0px;
 	border-left: 0px;
 	border-right: 0px;
+	/* box-shadow: 0px 1px 4px rgba(0,0,0,0.2); */
+	z-index: 2;
+	-webkit-app-region: drag; /* Makes this element draggable */
 }
 
 .DragBar {
@@ -23,8 +26,8 @@
 	border: #cccccc 1px solid;
 	border-radius: 10px;
 	align-content: center;
-	-webkit-app-region: drag; /* Makes this element draggable */
-	
+
+
 }
 
 .DragBar > h6 {
@@ -48,10 +51,12 @@
 	border: none;
 	transform: scale(1.0);
 	transition: all 0.05s ease-in-out;
+	-webkit-app-region: none;
 }
 
 .ControlButton:hover {
-	transform: scale(1.5);
+	/* transform: scale(1.5); */
+	animation: pulse 0.3s forwards;
 }
 
 
@@ -65,41 +70,6 @@
 	transform: scale(1.0);
 	transition: all 0.05s ease-in-out;
 }
-
-/* .ControlButton > img:hover {
-	transform: scale(1.5);
-}	 */
-
-/* .ControlButton {
-	padding: 0px;
-	width: 10px;
-	height: 10px;
-	margin: 0px 10px 0px 10px;
-	background-color: #5B40E4;
-	border: none;
-	border-radius: 50px;
-}
-
-.ControlButton:focus {
-	padding: 0px;
-	width: 10px;
-	height: 10px;
-	margin: 0px 10px 0px 10px;
-	background-color: #5B40E4;
-	border: none;
-	border-radius: 50px;
-	
-}
-
-.ControlButton:hover {
-	padding: 0px;
-	width: 10px;
-	height: 10px;
-	margin: 0px 10px 0px 10px;
-	background-color: #7B59E2;
-	border: none;
-	border-radius: 50px;
-} */
 
 .ControlButton > img {
 	width: 100%;
