@@ -34,38 +34,29 @@ const Table = ({
   );
 };
 
-const BookData = ({
-  checked,
-  onChange,
-  uniqueKey,
-  accNum,
-  callNum,
-  title,
-  author,
-  status,
-}) => {
+const BookData = (props) => {
   return (
-    <tr className="" onClick={onChange}>
+    <tr className="" onClick={props.onClick}>
       <td className="checkbox">
         <div>
           <input
             type="checkbox"
-            checked={checked}
-            id={`data-checkbox-${uniqueKey}`}
+            checked={props.checked}
+            id={`data-checkbox-${props.uniqueKey}`}
             onChange={(e) => e.stopPropagation()} // Prevent event bubbling to parent
           />
           <label
-            htmlFor={`data-checkbox-${uniqueKey}`}
+            htmlFor={`data-checkbox-${props.uniqueKey}`}
             className="data-checkbox"
           ></label>
         </div>
       </td>
-      <td>{accNum}</td>
-      <td>{callNum}</td>
-      <td>{title}</td>
-      <td>{author}</td>
+      <td>{props.accNum}</td>
+      <td>{props.callNum}</td>
+      <td>{props.title}</td>
+      <td>{props.author}</td>
       <td>
-        <BookStatus status={status} />
+        <BookStatus status={props.status} />
       </td>
     </tr>
   );
@@ -91,68 +82,54 @@ const BookStatus = ({ status }) => {
   }
 };
 
-const SearchInput = ({
-  className,
-  searchTerm,
-  setSearchTerm,
-  handleSubmit,
-}) => {
+const SearchInput = (props) => {
   return (
-    <form className={`search-box ${className}`} onSubmit={handleSubmit}>
+    <form className={`search-box ${props.className}`} onSubmit={props.onSubmit}>
       <input
         className="search-input"
         type="search"
         placeholder="Search..."
-        value={searchTerm}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-        }}
+        value={props.value}
+        onChange={props.onChange}
       />
       <button className="search-button">Search</button>
     </form>
   );
 };
 
-const SearchFilter = ({ setSelectedFilter, selectedFilter }) => {
+const SearchFilter = (props) => {
   const handleFilterChange = (e) => {
-    setSelectedFilter(e.target.value);
+    props.setSelectedFilter(e.target.value);
   };
+
   return (
     <div className="search-filter">
       <p className="filter-title">Search by</p>
       <div className="button-container">
         <FilterItem
-          name="search-filter"
-          id="acc_num"
           value="acc_num"
           label="AccNo."
-          checked={selectedFilter === "acc_num"}
+          checked={props.selectedFilter === "acc_num"}
           onChange={handleFilterChange}
         />
         <FilterItem
-          name="search-filter"
-          id="call_num"
           value="call_num"
           label="CallNo."
-          checked={selectedFilter === "call_num"}
+          checked={props.selectedFilter === "call_num"}
           onChange={handleFilterChange}
         />
 
         <FilterItem
-          name="search-filter"
-          id="title"
           value="title"
           label="Title"
-          checked={selectedFilter === "title"}
+          checked={props.selectedFilter === "title"}
           onChange={handleFilterChange}
         />
 
         <FilterItem
-          name="search-filter"
-          id="author"
           value="author"
           label="Author"
-          checked={selectedFilter === "author"}
+          checked={props.selectedFilter === "author"}
           onChange={handleFilterChange}
         />
       </div>
@@ -160,26 +137,17 @@ const SearchFilter = ({ setSelectedFilter, selectedFilter }) => {
   );
 };
 
-const FilterItem = ({
-  name = "",
-  id = "",
-  value = "",
-  label = "Status",
-  checked,
-  onChange,
-}) => {
-  console.log(onChange);
+const FilterItem = (props) => {
   return (
     <div className="filter-item">
       <input
         type="radio"
-        name={name}
-        id={id}
-        value={value}
-        checked={checked}
-        onChange={onChange}
+        name="filter"
+        id={props.value}
+        checked={props.checked}
+        onChange={props.onChange}
       />
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={props.id}>{props.label}</label>
     </div>
   );
 };

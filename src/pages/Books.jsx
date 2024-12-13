@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import "./styles/Books.css";
 // import { useTable } from "../hooks/useTable.jsx";
 import {
-  GetMaxPages,
-  FetchBooks,
-  SelectAllItems,
-  Pagination,
-  HandleSearch,
+  useFetchBooks,
+  useSelectAllItems,
+  usePagination,
 } from "../hooks/useTable.jsx";
 import {
   Table,
@@ -16,8 +14,7 @@ import {
 } from "../components/TableComponents.jsx";
 
 function BooksPage() {
-  const [maxPages, getBookCount] = GetMaxPages();
-  const [page, nextPage, prevPage] = Pagination(maxPages);
+  const [page,maxPages, nextPage, prevPage] = usePagination();
   const [
     books,
     fetchBooks,
@@ -26,24 +23,21 @@ function BooksPage() {
     searchTerm,
     setSearchTerm,
     handleSubmit,
-  ] = FetchBooks(page);
+  ] = useFetchBooks(page);
   const [selectedBooks, handleCheckAll, handleCheckboxChange] =
-    SelectAllItems(books);
+    useSelectAllItems(books);
 
   useEffect(() => {
     fetchBooks(page, searchFilter, searchTerm);
-    console.log("fetchBooks called with page:", page, searchFilter, searchTerm);
-    getBookCount();
   }, [page]);
 
   return (
     <div className="BooksPage">
       <SearchContainer
-        searchFilter={searchFilter}
         setSelectedFilter={setSelectedFilter}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        handleSubmit={handleSubmit}
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+        onSubmit={handleSubmit}
       />
       <div>
         <Table
@@ -77,24 +71,17 @@ function BooksPage() {
   );
 }
 
-const SearchContainer = ({
-  searchFilter,
-  setSelectedFilter,
-  searchTerm,
-  setSearchTerm,
-  handleSubmit,
-}) => {
+const SearchContainer = (props) => {
   return (
     <div className="search-container">
       <SearchInput
         className="search-bar"
-        setSearchTerm={setSearchTerm}
-        handleSubmit={handleSubmit}
-        searchTerm={searchTerm}
+        onChange={props.onChange}
+        onSubmit={props.onSubmit}
+        value={props.value}
       />
       <SearchFilter
-        setSelectedFilter={setSelectedFilter}
-        searchFilter={searchFilter}
+        setSelectedFilter={props.setSelectedFilter}
       />
     </div>
   );
