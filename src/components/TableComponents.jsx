@@ -11,7 +11,7 @@ const Table = ({
     <table className="main-table">
       <thead>
         <tr>
-          <th className="checkbox">
+          <th className="checkbox-column">
             <div>
               <input
                 type="checkbox"
@@ -37,7 +37,7 @@ const Table = ({
 const BookData = (props) => {
   return (
     <tr className="" onClick={props.onClick}>
-      <td className="checkbox">
+      <td className="checkbox-column">
         <div>
           <input
             type="checkbox"

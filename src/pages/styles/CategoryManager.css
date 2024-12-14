@@ -1,0 +1,123 @@
+.ManageAccount {
+    position: absolute;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.ManageAccountContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* top: 0px;
+    left: 260px;
+    right: 0px;
+    bottom: 0px; */
+    /* justify-content: center;
+    /* flex-direction: column; */
+}
+
+.category-form-container {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 0px;
+    border: solid #cccccc;
+    border-width: 0px 0px 1px 0px;
+    /* display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px 0px;
+    */
+}
+
+.category-form-container>div,
+.category-form-container>input {
+    /* min-width: 300px; */
+    max-width: 600px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px 15px;
+    
+}
+
+.category-form-container>div>div,
+.category-form-container>div>select {
+    width: 100%;
+    height: 100%;
+    min-height: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.category-form-container>div>div>label {
+    font-style: normal;
+}
+
+.category-table-heading  {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 15px;
+    justify-content: center;
+    background-color: #5B40E4;
+    color: white;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: small;
+    
+}
+
+.remove-button {
+    background-color: #5B40E4;
+    color: white;
+    border: none;
+    /* padding: 5px; */
+    /* margin: 0px 5px; */
+    cursor: pointer;
+    /* width: 70px; */
+    justify-self: center;
+    font-size: small;
+}
+
+.remove-button:active {
+    background-color: #3e25b9;
+    color: white;
+    border: none;   
+}
+
+
+.category-table-heading >div {
+    max-width: 600px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 15px 30px;
+}
+
+.category-table-heading >div>p {
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    
+}
+
+.account-table {
+    gap: 10px;
+    top: 0px;
+    bottom: 0px;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: solid #cccccc;
+    border-width: 0px 0px 1px 0px;
+}
+

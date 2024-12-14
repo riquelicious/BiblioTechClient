@@ -1,0 +1,121 @@
+.BookManagerContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.ManageBooks {
+    position: absolute;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.ManagerContainer {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    padding: 20px 0px;
+    border: solid #cccccc;
+    border-width: 0px 0px 1px 0px;
+}
+
+.ManagerContainer>div,
+.ManagerContainer>input {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px 15px;
+}
+
+.ManagerContainer>div>div,
+.ManagerContainer>div>select {
+    width: 100%;
+    height: 100%;
+    min-height: 2rem;
+    box-sizing: border-box;
+}
+
+.Book-table {
+    gap: 10px;
+    top: 0px;
+    bottom: 0px;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: solid #cccccc;
+    border-width: 0px 0px 1px 0px;
+}
+
+.table-heading {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    background-color: #5B40E4;
+    color: white;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: small;
+    /* padding: 0px 30px; */
+}
+
+.table-heading>div {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 15px 30px;
+}
+
+.table-heading>div>p {
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+}
+
+.category-container {
+    border: #cccccc solid;
+    border-width: 0 0 1px 0;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+    transition: height 300ms ease, opacity 300ms ease;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 100px;
+    align-items: start;
+    opacity: 1;
+}
+
+.hide-category {
+    border: none;
+    overflow: hidden;
+    min-height: 0;
+    height: 0;
+    opacity: 0;
+    transition: height 300ms ease, opacity 300ms ease;
+}
+
+.checkbox {
+    display: flex;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    font-style: italic;
+    font-size: small;
+}
+
+.show-category {
+    padding: 0px 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: #5B40E4;
+    /* justify-self: end; */
+    grid-column: 6/7;
+}

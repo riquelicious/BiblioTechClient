@@ -8,7 +8,6 @@ function usePagination() {
     setMaxPages(response);
   };
   useEffect(() => {
-    
     fetchMaxPages();
   }, []);
 
@@ -27,7 +26,6 @@ function usePagination() {
   return [page, maxPages, nextPage, prevPage];
 }
 
-
 function useFetchBooks(page) {
   const [books, setBooks] = useState([]);
   const [searchFilter, setSelectedFilter] = useState("acc_num");
@@ -40,11 +38,14 @@ function useFetchBooks(page) {
     }
   };
   const fetchBooks = async (pageNumber, filter, search) => {
-    const response = await window.electronAPI.fetchBooks(pageNumber, filter, search);
+    const response = await window.electronAPI.fetchBooks(
+      pageNumber,
+      filter,
+      search
+    );
     if (response?.data) {
       setBooks(response.data?.books);
-    }
-    else {
+    } else {
       setBooks([]);
     }
   };
@@ -68,11 +69,12 @@ function useSelectAllItems(books) {
   const [selectedBooks, setSelectedBooks] = useState([]);
 
   const handleCheckAll = () => {
+    console.log(selectedBooks);
     if (selectedBooks == null) return;
     if (selectedBooks.length === books.length) {
       setSelectedBooks([]); // Deselect all if all were selected
     } else {
-      setSelectedBooks(books.map((book) => book.unique_key)); // Select all if none were selected
+      setSelectedBooks(books.map((book) => book[0])); // Select all if none were selected
     }
   };
 
@@ -86,6 +88,5 @@ function useSelectAllItems(books) {
   };
   return [selectedBooks, handleCheckAll, handleCheckboxChange];
 }
-
 
 export { useFetchBooks, useSelectAllItems, usePagination };

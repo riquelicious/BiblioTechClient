@@ -14,3 +14,38 @@ ipcMain.handle("fetch-books", async (event, pageNumber, filter, search) => {
     search,
   });
 });
+
+ipcMain.handle("add-book", async (event, book) => {
+  console.log(book);
+});
+
+ipcMain.handle("fetch-accounts", async (event, page, filter, search) => {
+  console.log("useEffect called");
+  let response = await useRequest(URLPaths.FETCH_ACCOUNTS, "POST", {
+    page,
+    filter,
+    search,
+  });
+  console.log(response);
+  return response;
+});
+
+ipcMain.handle("get-accounts", async (event, account) => {
+  return await useRequest(URLPaths.GET_ACCOUNTS, "POST", { account });
+});
+
+ipcMain.handle("update-accounts", async (event, account) => {
+  return await useRequest(URLPaths.UPDATE_ACCOUNTS, "POST", { account });
+});
+
+ipcMain.handle("insert-accounts", async (event, account) => {
+  return await useRequest(URLPaths.SIGNUP, "POST", { account });
+});
+
+ipcMain.handle("delete-accounts", async (event, account) => {
+  return await useRequest(URLPaths.DELETE_ACCOUNTS, "POST", { account });
+});
+
+ipcMain.handle("get-user-types", async (event) => {
+  return await useRequest(URLPaths.GET_USER_TYPES, "GET");
+});

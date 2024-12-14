@@ -14,6 +14,23 @@ import MainWindow from "./pages/MainWindow.jsx";
 import DashBoard from "./pages/DashBoard.jsx";
 import BooksPage from "./pages/Books.jsx";
 
+// import ManageAccounts from "./pages/ManageAccounts.jsx";
+// import BookManager from "./pages/BookManager.jsx";
+
+import InsertBookManager from "./pages/InsertBooks.jsx";
+import UpdateBookManager from "./pages/UpdateBooks.jsx";
+
+import InsertAccountManager from "./pages/InsertAccounts.jsx";
+import UpdateManageAccounts from "./pages/UpdateAccounts.jsx";
+
+import InsertUserTypes from "./pages/InsertUserTypes.jsx";
+import UpdateUserTypes from "./pages/UpdateUserTypes.jsx";
+
+import InsertCategory from "./pages/InsertCategory.jsx";
+import UpdateCategory from "./pages/UpdateCategory.jsx";
+
+import DeleteAccounts from "./pages/DeleteAccounts.jsx";
+
 const router = createHashRouter([
   {
     path: "/login",
@@ -28,9 +45,18 @@ const router = createHashRouter([
     path: "/",
     element: <MainWindow />,
     children: [
-      { index: true, element: <BooksPage /> },
+      { index: true, element: <DeleteAccounts /> },
       { path: "dashboard", element: <DashBoard /> },
       { path: "books", element: <BooksPage /> },
+      { path: "insert-book-manager", element: <InsertBookManager /> },
+      { path: "update-book-manager", element: <UpdateBookManager /> },
+      { path: "insert-account-manager", element: <InsertAccountManager /> },
+      { path: "update-account-manager", element: <UpdateManageAccounts /> },
+      { path: "delete-accounts", element: <DeleteAccounts /> },
+      { path: "insert-user-types", element: <InsertUserTypes /> },
+      { path: "update-user-types", element: <UpdateUserTypes /> },
+      { path: "insert-category", element: <InsertCategory /> },
+      { path: "update-category", element: <UpdateCategory /> },
     ],
   },
   // 404 route
@@ -44,7 +70,12 @@ function App() {
   return (
     <div className="App">
       <TitleBar />
-      <RouterProvider router={router} />
+      <RouterProvider
+        router={router}
+        future={{
+          v7_startTransition: true,
+        }}
+      />
     </div>
   );
 }

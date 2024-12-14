@@ -67,13 +67,13 @@
 	pointer-events: none;
 }
 
-.checkbox {
+.checkbox-column {
 	width: var(--row-height);
 	text-align: center;
 
 }
 
-.checkbox > div {
+.checkbox-column > div {
 	display: flex;
 	width: 100%;
 	height: 100%;
@@ -81,11 +81,11 @@
 	align-items: center;
 }
 
-.checkbox > div > input[type="checkbox"] {
+.checkbox-column > div > input[type="checkbox"] {
 	display: none;
 }
 
-.checkbox > div > label {
+.checkbox-column > div > label {
 	display: flex;
 	width: 15px;
 	height: 15px;
@@ -96,7 +96,7 @@
 	border-radius: 2px;
 }
 
-.checkbox > div > input[type="checkbox"]:checked + label::before {
+.checkbox-column > div > input[type="checkbox"]:checked + label::before {
 	content: '🗸';
 	border-radius: 5px; /* For rounded corners */
 	display: inline-block;
@@ -104,7 +104,7 @@
 	text-align: center;
 }
 
-.checkbox > div > input[type="checkbox"]:checked + label::before {
+.checkbox-column > div > input[type="checkbox"]:checked + label::before {
 	font-weight: bold;
 	color: white;
 }

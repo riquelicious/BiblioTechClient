@@ -3,33 +3,15 @@ import React, { createContext, useState, useContext } from "react";
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [pageCount, setPageCount] = useState(1);
-  const [pageLocked, setPageLocked] = useState(true);
-  const [region, setRegion] = useState({ region_code: "", region_name: "" });
-  const [province, setProvince] = useState({
-    province_code: "",
-    province_name: "",
-  });
-  const [city, setCity] = useState({ city_code: "", city_name: "" });
-  const [barangay, setBarangay] = useState({
-    barangay_code: "",
-    barangay_name: "",
-  });
+  const goBack = () => {
+    const navigate = useNavigate();
+    navigate(-1);
+  };
 
   return (
     <AppContext.Provider
       value={{
-        pagination: { pageCount, setPageCount, pageLocked, setPageLocked },
-        location: {
-          region,
-          setRegion,
-          province,
-          setProvince,
-          city,
-          setCity,
-          barangay,
-          setBarangay,
-        },
+        goBack,
       }}
     >
       {children}
@@ -37,16 +19,11 @@ export const AppProvider = ({ children }) => {
   );
 };
 
-function usePaginationContext() {
-  const { pagination } = useContext(AppContext);
-  return pagination;
+function useBack() {
+  const { goBack } = useContext(AppContext);
+  return goBack;
 }
 
-function useLocationContext() {
-  const { location } = useContext(AppContext);
-  return location;
-}
-
-export { usePaginationContext, useLocationContext };
+export { useBack };
 
 // export const useAppContext = () => useContext(AppContext);
