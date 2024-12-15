@@ -1,0 +1,68 @@
+.checkboxContainer,
+.checkboxContainerHeader {
+  display: flex;
+  align-items: center;
+}
+
+.checkboxContainer > input[type="checkbox"],
+.checkboxContainerHeader > input[type="checkbox"] {
+  display: none;
+}
+
+.checkboxContainer > label,
+.checkboxContainerHeader > label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkboxContainer > input[type="checkbox"]:checked + label::before,
+.checkboxContainerHeader > input[type="checkbox"]:checked + label::before,
+.checkboxContainer > input[type="checkbox"]:not(:checked) + label,
+.checkboxContainerHeader > input[type="checkbox"]:not(:checked) + label {
+  animation: popAnimation 0.1s ease-in-out;
+}
+
+.checkboxContainerHeader > label::before,
+.checkboxContainer > label::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.checkboxContainerHeader > label::before {
+  border: 2px solid #ffffff;
+}
+
+.checkboxContainer > label::before {
+  border: 2px solid #5b40e4;
+}
+
+.checkboxContainer > input[type="checkbox"]:checked + label::before,
+.checkboxContainerHeader > input[type="checkbox"]:checked + label::before {
+  background-color: #5b40e4;
+}
+
+.checkboxContainer > input[type="checkbox"]:checked + label::before {
+  border: 2px solid white;
+  outline: #5b40e4 solid 2px;
+  width: 8px;
+  height: 8px;
+}
+
+@keyframes popAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

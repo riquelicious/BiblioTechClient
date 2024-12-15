@@ -20,18 +20,16 @@ ipcMain.handle("add-book", async (event, book) => {
 });
 
 ipcMain.handle("fetch-accounts", async (event, page, filter, search) => {
-  console.log("useEffect called");
   let response = await useRequest(URLPaths.FETCH_ACCOUNTS, "POST", {
     page,
     filter,
     search,
   });
-  console.log(response);
   return response;
 });
 
 ipcMain.handle("get-accounts", async (event, account) => {
-  return await useRequest(URLPaths.GET_ACCOUNTS, "POST", { account });
+  return await useRequest(URLPaths.GET_ACCOUNTS, "POST", account);
 });
 
 ipcMain.handle("update-accounts", async (event, account) => {

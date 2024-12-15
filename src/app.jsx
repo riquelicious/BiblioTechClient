@@ -14,9 +14,6 @@ import MainWindow from "./pages/MainWindow.jsx";
 import DashBoard from "./pages/DashBoard.jsx";
 import BooksPage from "./pages/Books.jsx";
 
-// import ManageAccounts from "./pages/ManageAccounts.jsx";
-// import BookManager from "./pages/BookManager.jsx";
-
 import InsertBookManager from "./pages/InsertBooks.jsx";
 import UpdateBookManager from "./pages/UpdateBooks.jsx";
 

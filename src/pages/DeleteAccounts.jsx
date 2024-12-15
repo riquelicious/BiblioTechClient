@@ -1,32 +1,36 @@
-import React, { use } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { use, useEffect } from "react";
+import { usePagination, useSelectAllItems, fetchPagedData} from "../hooks/useDataRequest.js";
 import "./styles/DeleteManager.css";
-import { useSelectAllItems } from "../hooks/useTable.jsx";
+import CheckBox from "../components/CheckBox.js";
 
 const DeleteAccounts = () => {
-  const navigate = useNavigate();
-  const [page, setPage] = React.useState(0);
-  const [maxPages, setMaxPages] = React.useState(0);
-  const [entries, setEntries] = React.useState([]);
+  const fetchAccounts = async (page, filter, search) => {
+    return window.electronAPI.fetchAccounts(page, filter, search);
+  }
+  // const [entries, setEntries] = React.useState([]);
+  const { fetchEntries, entries, setEntries } = fetchPagedData(fetchAccounts);
+  const { page, nextPage, prevPage } = usePagination(entries?.length || 0);
+  const { selectedItems, handleCheckAll, handleCheckboxChange } =
+    useSelectAllItems(entries);
+  const {useUpdateEntries} = usePagination(entries?.length || 0);
   const [searchTerm, setSearchTerm] = React.useState("");
   const [searchFilter, setSearchFilter] = React.useState("username");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(page, searchFilter, searchTerm);
     if (searchTerm) {
       fetchEntries(page, searchFilter, searchTerm);
     }
   };
 
   const handleDelete = () => {
-    if (selectedBooks.length === 0)
-      alert("Please select at least one account to delete.");
+    if (selectedItems?.length === 0)
+      alert("Please select at least one to delete.");
     else {
       const deleteAccounts = async () => {
         try {
           const response = await window.electronAPI.deleteAccounts(
-            selectedBooks
+            selectedItems
           );
           if (response?.data?.message) {
             console.log(response?.message);
@@ -42,56 +46,9 @@ const DeleteAccounts = () => {
     }
   };
 
-  const nextPage = () => {
-    if (page < maxPages) setPage(page + 1);
-  };
-
-  const prevPage = () => {
-    if (page > 0) setPage(page - 1);
-  };
-
-  const fetchEntries = async (page, filter, search) => {
-    try {
-      const response = await window.electronAPI.fetchAccounts(
-        page,
-        filter,
-        search
-      );
-
-      if (response?.data?.accounts) {
-        setEntries(response.data?.accounts);
-        setMaxPages(response.data?.page_count);
-      } else {
-        setEntries([]);
-        setMaxPages(0);
-      }
-    } catch (error) {
-      console.error("Error fetching entries:", error);
-      setEntries([]);
-      setMaxPages(0);
-    }
-  };
-
   React.useEffect(() => {
     fetchEntries(page, searchFilter, searchTerm);
-  }, [page, searchFilter, searchTerm]);
-
-  React.useEffect(() => {
-    setPage(0);
-  }, [maxPages]);
-
-  const [selectedBooks, handleCheckAll, handleCheckboxChange] =
-    useSelectAllItems(entries);
-
-  const handleUpdate = () => {
-    if (selectedBooks.length === 0) {
-      alert("Please select at least one account to update.");
-      return;
-    }
-    navigate("/update-account-manager", {
-      state: { account_ids: selectedBooks },
-    });
-  };
+  }, [page]);
 
   return (
     <div className="MainDeletionContainerWrapper">
@@ -106,24 +63,25 @@ const DeleteAccounts = () => {
         />
         <TableHeader
           onChange={handleCheckAll}
-          selectedBooks={selectedBooks}
-          entries={entries}
+          selectedItems={selectedItems}
+          entries={entries || []}
         />
         <div className="MainTable">
           <div>
-            {entries.map((entry) => (
+            {(entries || []).map((entry) => (
               <AccountEntry
-                checked={selectedBooks.includes(entry[0])}
+                checked={selectedItems.includes(entry[0])}
                 onChange={() => handleCheckboxChange(entry[0])}
                 key={entry[0]}
-                value={entry}
+                value={(entry || [])}
               />
             ))}
           </div>
         </div>
         <div className="TableFooter">
+          
           <button onClick={prevPage}>PREV</button>
-          <button onClick={handleUpdate}>UPDATE</button>
+          <button onClick={useUpdateEntries}>UPDATE</button>
           <button onClick={handleDelete}>DELETE</button>
           <button onClick={nextPage}>NEXT</button>
         </div>
@@ -133,14 +91,14 @@ const DeleteAccounts = () => {
 };
 
 function AccountEntry(props) {
+    useEffect(() => {
+      console.log(props.value[0] + " " + props.value[1]); 
+    }, []);
   return (
     <div className="account-entry">
       <div className="checkbox-column-new">
-        <input
-          type="checkbox"
-          name=""
-          id=""
-          className=""
+        <CheckBox
+          id={props.value[0]}
           onChange={props.onChange}
           checked={props.checked}
         />
@@ -165,10 +123,16 @@ function TableHeader(props) {
   return (
     <div className="account-table-heading">
       <div className="checkbox-column-new">
-        <input
+        {/* <input
           type="checkbox"
           onChange={props.onChange}
-          checked={props.selectedBooks.length === props.entries.length}
+          checked={(props.selectedItems || []).length === (props.entries || []).length }
+        /> */}
+        <CheckBox
+          isHeader
+          id={"check-all"}
+          onChange={props.onChange}
+          checked={(props.selectedItems || []).length === (props.entries || []).length }
         />
       </div>
       <div className="column">
@@ -198,7 +162,6 @@ function SearchContainer(props) {
         <option value="username">USERNAME</option>
         <option value="password">PASSWORD</option>
         <option value="email">EMAIL</option>
-        {/* <option value="user_type_id">USER TYPE</option> */}
       </select>
     </div>
   );
