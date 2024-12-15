@@ -30,6 +30,14 @@ import InsertCategory from "./pages/InsertCategory.jsx";
 import UpdateCategory from "./pages/UpdateCategory.jsx";
 
 import DeleteAccounts from "./pages/DeleteAccounts.jsx";
+import DeleteBooks from "./pages/DeleteBooks.jsx";
+import DeleteCategory from "./pages/DeleteCategory.jsx";
+import DeleteUserTypes from "./pages/DeleteUserTypes.jsx";
+
+import DisplayCopies from "./pages/DisplayCopies.jsx";
+import DisplayBorrower from "./pages/DisplayBorrower.jsx";
+import DisplayUserRecords from "./pages/DisplayUserRecords.jsx";
+import DisplayCategory from "./pages/DisplayCategories.jsx";
 
 const router = createHashRouter([
   {
@@ -45,7 +53,7 @@ const router = createHashRouter([
     path: "/",
     element: <MainWindow />,
     children: [
-      { index: true, element: <DeleteAccounts /> },
+      { index: true, element: <DisplayCopies /> },
       { path: "dashboard", element: <DashBoard /> },
       { path: "books", element: <BooksPage /> },
       { path: "insert-book-manager", element: <InsertBookManager /> },
@@ -57,6 +65,13 @@ const router = createHashRouter([
       { path: "update-user-types", element: <UpdateUserTypes /> },
       { path: "insert-category", element: <InsertCategory /> },
       { path: "update-category", element: <UpdateCategory /> },
+      { path: "delete-books", element: <DeleteBooks /> },
+      { path: "delete-category", element: <DeleteCategory /> },
+      { path: "delete-user-types", element: <DeleteUserTypes /> },
+      { path: "display-copies", element: <DisplayCopies /> },
+      { path: "display-borrower", element: <DisplayBorrower /> },
+      { path: "display-user-records", element: <DisplayUserRecords /> },
+      { path: "display-category", element: <DisplayCategory /> },
     ],
   },
   // 404 route
