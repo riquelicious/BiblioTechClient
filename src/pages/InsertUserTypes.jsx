@@ -1,12 +1,6 @@
 import React, { use } from "react";
-import {
-  Dropdown,
-  TextBox,
-  BottomBar,
-  Checkbox,
-} from "../components/Input.jsx";
+import { TextBox, BottomBar, Checkbox } from "../components/Input.jsx";
 import "./styles/UserTypeManager.css";
-import { div } from "framer-motion/client";
 
 const InsertUserTypes = () => {
   const [entries, setEntries] = React.useState([

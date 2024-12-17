@@ -47,3 +47,11 @@ ipcMain.handle("delete-accounts", async (event, account) => {
 ipcMain.handle("get-user-types", async (event) => {
   return await useRequest(URLPaths.GET_USER_TYPES, "GET");
 });
+
+ipcMain.handle("fetch-user-types", async (event, page, filter, search) => {
+  return await useRequest(URLPaths.FETCH_USER_TYPES, "POST", {
+    page,
+    filter,
+    search,
+  });
+});

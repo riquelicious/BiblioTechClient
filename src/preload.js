@@ -4,13 +4,12 @@ contextBridge.exposeInMainWorld("electronAPI", {
   closeWindow: () => ipcRenderer.send("close-window"),
   minimizeWindow: () => ipcRenderer.send("minimize-window"),
   toggleMaximize: () => ipcRenderer.send("toggle-maximize"),
-  getBookCount: () => {
-    return ipcRenderer.invoke("get-book-count");
-  },
-  fetchBooks: (page, filter, search) => {
-    return ipcRenderer.invoke("fetch-books", page, filter, search);
-  },
   sendBook: (book) => ipcRenderer.send("send-books", book),
+
+  getUserTypes: () => {
+    return ipcRenderer.invoke("get-user-types");
+  },
+
   fetchAccounts: (page, filter, search) => {
     return ipcRenderer.invoke("fetch-accounts", page, filter, search);
   },
@@ -31,7 +30,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
     return ipcRenderer.invoke("delete-accounts", account_ids);
   },
 
-  getUserTypes: () => {
-    return ipcRenderer.invoke("get-user-types");
+  fetchUserTypes: (page, filter, search) => {
+    return ipcRenderer.invoke("fetch-user-types", page, filter, search);
   },
 });

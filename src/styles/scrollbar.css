@@ -1,17 +1,16 @@
-
 *::-webkit-scrollbar {
-	width: 5px; /* scrollbar width */
-	background-color: transparent;
+  width: 5px; /* scrollbar width */
+  background-color: transparent;
 }
 
 *::-webkit-scrollbar-track {
-	margin: 10px;
-	background: #cccccc; /* track color */
-	border-radius: 10px;
+  margin: 10px;
+  background: #cccccc; /* track color */
+  border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
-	background-color: #5B40E4; /* thumb color */
-	border-radius: 10px;
-	transition: all 0.8s ease;
+  background-color: #5b40e4; /* thumb color */
+  border-radius: 10px;
+  transition: all 0.8s ease;
 }

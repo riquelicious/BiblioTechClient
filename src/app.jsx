@@ -1,40 +1,53 @@
-import React from "react";
+import React, { lazy } from "react";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Back } from "./components/Buttons.jsx";
 
-import "./styles/App.css";
+import styles from "./styles/app.module.css";
 import "./styles/scrollbar.css";
 
 import TitleBar from "./components/TitleBar.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
-import LoginPanel from "./pages/LoginPanel.jsx";
-import SignUpPanel from "./pages/SignUpPanel.jsx";
 
-import MainWindow from "./pages/MainWindow.jsx";
-import DashBoard from "./pages/DashBoard.jsx";
-import BooksPage from "./pages/Books.jsx";
+const LoginPage = lazy(() => import("./pages/LoginPage.jsx"));
+const LoginPanel = lazy(() => import("./pages/LoginPanel.jsx"));
+const SignUpPanel = lazy(() => import("./pages/SignUpPanel.jsx"));
 
-import InsertBookManager from "./pages/InsertBooks.jsx";
-import UpdateBookManager from "./pages/UpdateBooks.jsx";
+import {
+  AccountsWindow,
+  BooksWindow,
+} from "./pages/accounts/AccountsWindow.jsx";
+const DashBoard = lazy(() => import("./pages/DashBoard.jsx"));
+const BooksPage = lazy(() => import("./pages/Books.jsx"));
 
-import InsertAccountManager from "./pages/InsertAccounts.jsx";
-import UpdateManageAccounts from "./pages/UpdateAccounts.jsx";
+const InsertBookManager = lazy(() => import("./pages/InsertBooks.jsx"));
+const UpdateBookManager = lazy(() => import("./pages/UpdateBooks.jsx"));
 
-import InsertUserTypes from "./pages/InsertUserTypes.jsx";
-import UpdateUserTypes from "./pages/UpdateUserTypes.jsx";
+const InsertAccountManager = lazy(() =>
+  import("./pages/accounts/InsertAccounts.jsx")
+);
+const UpdateAccounts = lazy(() =>
+  import("./pages/accounts/UpdateAccounts.jsx")
+);
+const DeleteAccounts = lazy(() =>
+  import("./pages/accounts/DeleteAccounts.jsx")
+);
 
-import InsertCategory from "./pages/InsertCategory.jsx";
-import UpdateCategory from "./pages/UpdateCategory.jsx";
+const InsertUserTypes = lazy(() => import("./pages/InsertUserTypes.jsx"));
+const UpdateUserTypes = lazy(() =>
+  import("./pages/accounts/UpdateUserTypes.jsx")
+);
 
-import DeleteAccounts from "./pages/DeleteAccounts.jsx";
-import DeleteBooks from "./pages/DeleteBooks.jsx";
-import DeleteCategory from "./pages/DeleteCategory.jsx";
-import DeleteUserTypes from "./pages/DeleteUserTypes.jsx";
+const InsertCategory = lazy(() => import("./pages/InsertCategory.jsx"));
+const UpdateCategory = lazy(() => import("./pages/UpdateCategory.jsx"));
 
-import DisplayCopies from "./pages/DisplayCopies.jsx";
-import DisplayBorrower from "./pages/DisplayBorrower.jsx";
-import DisplayUserRecords from "./pages/DisplayUserRecords.jsx";
-import DisplayCategory from "./pages/DisplayCategories.jsx";
+const ViewAccounts = lazy(() => import("./pages/accounts/ViewAccounts.jsx"));
+const DeleteBooks = lazy(() => import("./pages/DeleteBooks.jsx"));
+const DeleteCategory = lazy(() => import("./pages/DeleteCategory.jsx"));
+const ViewUserTypes = lazy(() => import("./pages/accounts/ViewUserTypes.jsx"));
+
+const DisplayCopies = lazy(() => import("./pages/DisplayCopies.jsx"));
+const DisplayBorrower = lazy(() => import("./pages/DisplayBorrower.jsx"));
+const DisplayUserRecords = lazy(() => import("./pages/DisplayUserRecords.jsx"));
+const DisplayCategory = lazy(() => import("./pages/DisplayCategories.jsx"));
 
 const router = createHashRouter([
   {
@@ -47,40 +60,49 @@ const router = createHashRouter([
     ],
   },
   {
-    path: "/",
-    element: <MainWindow />,
+    path: "/accounts/",
+    element: <AccountsWindow />,
     children: [
-      { index: true, element: <DisplayCopies /> },
+      { index: true, element: <ViewAccounts /> },
       { path: "dashboard", element: <DashBoard /> },
       { path: "books", element: <BooksPage /> },
       { path: "insert-book-manager", element: <InsertBookManager /> },
       { path: "update-book-manager", element: <UpdateBookManager /> },
-      { path: "insert-account-manager", element: <InsertAccountManager /> },
-      { path: "update-account-manager", element: <UpdateManageAccounts /> },
-      { path: "delete-accounts", element: <DeleteAccounts /> },
-      { path: "insert-user-types", element: <InsertUserTypes /> },
-      { path: "update-user-types", element: <UpdateUserTypes /> },
-      { path: "insert-category", element: <InsertCategory /> },
-      { path: "update-category", element: <UpdateCategory /> },
-      { path: "delete-books", element: <DeleteBooks /> },
-      { path: "delete-category", element: <DeleteCategory /> },
-      { path: "delete-user-types", element: <DeleteUserTypes /> },
+      { path: "view", element: <ViewAccounts /> },
+      { path: "insert", element: <InsertAccountManager /> },
+      { path: "update", element: <UpdateAccounts /> },
+      { path: "delete", element: <DeleteAccounts /> },
+      { path: "types/view", element: <ViewUserTypes /> },
+      { path: "types/insert", element: <InsertUserTypes /> },
+      { path: "types/update", element: <UpdateUserTypes /> },
+      { path: "types/delete", element: <ViewUserTypes /> },
       { path: "display-copies", element: <DisplayCopies /> },
       { path: "display-borrower", element: <DisplayBorrower /> },
       { path: "display-user-records", element: <DisplayUserRecords /> },
       { path: "display-category", element: <DisplayCategory /> },
     ],
   },
+  {
+    path: "/books/",
+    element: <BooksWindow />,
+    children: [
+      { index: true, element: <DeleteBooks /> },
+      { path: "view", element: <BooksPage /> },
+      { path: "insert", element: <InsertBookManager /> },
+      { path: "update", element: <UpdateBookManager /> },
+      { path: "delete", element: <DeleteBooks /> },
+    ],
+  },
   // 404 route
   {
     path: "*",
-    element: <Back />,
+    element: <AccountsWindow />,
   },
 ]);
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <TitleBar />
       <RouterProvider
         router={router}

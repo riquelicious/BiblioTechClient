@@ -1,0 +1,194 @@
+.SearchContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 50px;
+  padding: 20px;
+  font-weight: bold;
+  height: 50px;
+  box-sizing: border-box;
+}
+
+.SearchContainer > form {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
+.SearchContainer > form > button {
+  border-radius: 0px 5px 5px 0px;
+  height: 1.5rem;
+  font-size: 0.8rem;
+  box-sizing: border-box;
+  border: none;
+  background-color: #5b40e4;
+  color: white;
+}
+
+.SearchContainer > form > input {
+  border-radius: 5px 0px 0px 5px;
+  height: 1.5rem;
+  font-size: 0.8rem;
+  box-sizing: border-box;
+  border: solid #5b40e4 1px;
+  padding: 5px 10px;
+  width: 200px;
+}
+
+.SearchContainer > form > input:focus {
+  outline: none;
+}
+
+.SearchContainer > select {
+  width: 150px;
+  height: 1.5rem;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: solid #5b40e4 1px;
+  font-size: 0.6rem;
+  color: #5b40e4;
+}
+
+.SearchContainer > select:focus {
+  outline: none;
+}
+
+.SearchContainer > select > option {
+  font-size: 0.6rem;
+}
+
+.EntriesTable {
+  top: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: solid #cccccc;
+  border-width: 0px 0px 1px 0px;
+}
+
+.Empty {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  color: #949494;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.Empty > img {
+  filter: brightness(0) invert(0.5);
+}
+
+.TableHeader {
+  background-color: #5b40e4;
+  color: white;
+  padding: 0px 5px 0px 0px;
+}
+
+.TableHeaderColumns,
+.EntryColumns {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.EntryColumns > div {
+  align-items: center;
+  display: flex;
+  font-size: 0.7rem;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+  padding: 0px 0px 0px 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+/* .EntryColumns > input[type="checkbox"] {
+
+} */
+
+.TableHeaderColumns > p,
+.EntryColumns > p {
+  align-items: center;
+  display: flex;
+  font-size: 0.7rem;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+  padding: 0px 0px 0px 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.TableHeaderColumns > p {
+  font-weight: bold;
+}
+
+.CheckBoxContainer {
+  min-width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px !important;
+}
+
+.TableHeader,
+.Entry {
+  display: flex;
+  height: 40px;
+  gap: 15px;
+}
+
+.Entry {
+  border: solid #eeeeee;
+  border-width: 0px 0px 1px 0px;
+  transition: all 0.2s ease;
+}
+
+.Entry:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+  box-shadow: inset #5b40e421 0px 0px 5px 0px;
+}
+
+.ControlBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  height: 50px;
+}
+
+.ControlBar > p {
+  font-size: 0.8rem;
+  font-weight: bold;
+  width: 75%;
+  text-align: left;
+  color: #949494;
+}
+
+.ControlBar > button {
+  height: 1.5rem;
+  width: 80px;
+  font-size: 0.8rem;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: white;
+  border: solid #5b40e4 1px;
+  color: #5b40e4;
+}
+
+.ControlBar > button:active {
+  background-color: #5b40e4;
+  color: white;
+}

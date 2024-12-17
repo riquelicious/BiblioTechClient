@@ -9,6 +9,7 @@ export const URLPaths = Object.freeze({
   GET_ACCOUNTS: "/get_accounts",
   UPDATE_ACCOUNTS: "/update_accounts",
   DELETE_ACCOUNTS: "/delete_accounts",
+  FETCH_USER_TYPES: "/fetch_user_types",
   GET_USER_TYPES: "/get_user_types",
   HOME: "/",
 });

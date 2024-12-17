@@ -1,356 +1,291 @@
-
 .MainDeletionContainerWrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 .MainDeletionContainer {
-    position: absolute;
-    display: grid;
-    grid-template-rows: auto auto 1fr auto;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
+  position: absolute;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
 }
 
 .checkbox-column-new {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px !important;
 }
-
 
 .MainTable {
-    gap: 10px;
-    top: 0px;
-    bottom: 0px;
-    height: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    border: solid #cccccc;
-    border-width: 0px 0px 1px 0px;
+  gap: 10px;
+  top: 0px;
+  bottom: 0px;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: solid #cccccc;
+  border-width: 0px 0px 1px 0px;
 }
-.checkbox-column-new>input[type="checkbox"] {
-    width: 1rem;
-    height: 1rem;
+.checkbox-column-new > input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
 }
-
-.account-entry {
-    display: grid;
-    grid-template-columns: 80px 1fr 1fr 1fr 1fr ;
-    gap: 15px;
-    padding: 20px 0px;
-    border: solid #cccccc;
-    border-width: 0px 0px 1px 0px;
-  
-}
-
-
-
-
-.account-entry p {
-    margin: 0px;
-    padding: 0px 20px;
-    text-align: left;
-}
-
-.account-entry > div{
-    padding: 5px 15px;
-}
-
-.account-table-heading  {
-    display: grid;
-    grid-template-columns: 80px 1fr 1fr 1fr 1fr;
-    gap: 15px;
-    background-color: #5B40E4;
-    color: white;
-    font-weight: bold;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: small;
-}
-
-.account-table-heading >div {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 15px 30px;
-    align-content: center;
-    
-}
-
-.account-table-heading >div>p {
-    margin: 0px;
-    padding: 0px;
-    text-align: left;
-}
-
-/* Display Copies */
 
 .copies-entry {
-    display: grid;
-    grid-template-columns: 80px 1fr 1fr 1fr ;
-    gap: 15px;
-    padding: 20px 0px;
-    border: solid #cccccc;
-    border-width: 0px 0px 1px 0px;
-  
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 1fr;
+  gap: 15px;
+  padding: 20px 0px;
+  border: solid #cccccc;
+  border-width: 0px 0px 1px 0px;
 }
 
 .copies-entry p {
-    margin: 0px;
-    padding: 0px 20px;
-    text-align: left;
+  margin: 0px;
+  padding: 0px 20px;
+  text-align: left;
 }
 
-.copies-entry > div{
-    padding: 5px 15px;
+.copies-entry > div {
+  padding: 5px 15px;
 }
 
-.copies-table-heading  {
-    display: grid;
-    grid-template-columns: 80px 1fr 1fr 1fr;
-    gap: 15px;
-    background-color: #5B40E4;
-    color: white;
-    font-weight: bold;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: small;
+.copies-table-heading {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 1fr;
+  gap: 15px;
+  background-color: #5b40e4;
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: small;
 }
 
-.copies-table-heading >div {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 15px 30px;
-    align-content: center;
-    
+.copies-table-heading > div {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 15px 30px;
+  align-content: center;
 }
 
-.copies-table-heading >div>p {
-    margin: 0px;
-    padding: 0px;
-    text-align: left;
+.copies-table-heading > div > p {
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
 }
 
 /* Display Borrower */
 
 .borrower-entry {
-    display: grid;
-    grid-template-columns: 80px 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 15px;
-    padding: 20px 0px;
-    border: solid #cccccc;
-    border-width: 0px 0px 1px 0px;
-  
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  padding: 20px 0px;
+  border: solid #cccccc;
+  border-width: 0px 0px 1px 0px;
 }
 
 .borrower-entry p {
-    margin: 0px;
-    padding: 0px 20px;
-    text-align: left;
+  margin: 0px;
+  padding: 0px 20px;
+  text-align: left;
 }
 
-.borrower-entry > div{
-    padding: 5px 15px;
+.borrower-entry > div {
+  padding: 5px 15px;
 }
 
-.borrower-table-heading  {
-    display: grid;
-    grid-template-columns: 80px 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 15px;
-    background-color: #5B40E4;
-    color: white;
-    font-weight: bold;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: small;
+.borrower-table-heading {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  background-color: #5b40e4;
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: small;
 }
 
-.borrower-table-heading >div {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 15px 30px;
-    align-content: center;
-    
+.borrower-table-heading > div {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 15px 30px;
+  align-content: center;
 }
 
-.borrower-table-heading >div>p {
-    margin: 0px;
-    padding: 0px;
-    text-align: left;
+.borrower-table-heading > div > p {
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
 }
 
 /* Display User Records */
 
 .UserRecords-entry {
-    display: grid;
-    grid-template-columns: 80px 1fr 1fr 1fr 1fr;
-    gap: 15px;
-    padding: 20px 0px;
-    border: solid #cccccc;
-    border-width: 0px 0px 1px 0px;
-  
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  padding: 20px 0px;
+  border: solid #cccccc;
+  border-width: 0px 0px 1px 0px;
 }
 
 .UserRecords-entry p {
-    margin: 0px;
-    padding: 0px 20px;
-    text-align: left;
+  margin: 0px;
+  padding: 0px 20px;
+  text-align: left;
 }
 
-.UserRecords-entry > div{
-    padding: 5px 15px;
+.UserRecords-entry > div {
+  padding: 5px 15px;
 }
 
-.UserRecords-table-heading  {
-    display: grid;
-    grid-template-columns: 80px 1fr 1fr 1fr 1fr;
-    gap: 15px;
-    background-color: #5B40E4;
-    color: white;
-    font-weight: bold;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: small;
+.UserRecords-table-heading {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  background-color: #5b40e4;
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: small;
 }
 
-.UserRecords-table-heading >div {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 15px 30px;
-    align-content: center;
-    
+.UserRecords-table-heading > div {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 15px 30px;
+  align-content: center;
 }
 
-.UserRecords-table-heading >div>p {
-    margin: 0px;
-    padding: 0px;
-    text-align: left;
+.UserRecords-table-heading > div > p {
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
 }
 
 /* Display Category */
 
 .Category-entry {
-    display: grid;
-    grid-template-columns: 80px 1fr 1fr;
-    gap: 15px;
-    padding: 20px 0px;
-    border: solid #cccccc;
-    border-width: 0px 0px 1px 0px;
-  
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr;
+  gap: 15px;
+  padding: 20px 0px;
+  border: solid #cccccc;
+  border-width: 0px 0px 1px 0px;
 }
 
 .Category-entry p {
-    margin: 0px;
-    padding: 0px 20px;
-    text-align: left;
+  margin: 0px;
+  padding: 0px 20px;
+  text-align: left;
 }
 
-.Category-entry > div{
-    padding: 5px 15px;
+.Category-entry > div {
+  padding: 5px 15px;
 }
 
-.Category-table-heading  {
-    display: grid;
-    grid-template-columns: 80px 1fr 1fr;
-    gap: 15px;
-    background-color: #5B40E4;
-    color: white;
-    font-weight: bold;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: small;
+.Category-table-heading {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr;
+  gap: 15px;
+  background-color: #5b40e4;
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: small;
 }
 
-.Category-table-heading >div {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 15px 30px;
-    align-content: center;
-    
+.Category-table-heading > div {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 15px 30px;
+  align-content: center;
 }
 
-.Category-table-heading >div>p {
-    margin: 0px;
-    padding: 0px;
-    text-align: left;
+.Category-table-heading > div > p {
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
 }
 
 .SearchContainer {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    gap: 50px;
-    padding: 20px;
-    font-weight: bold;  
-    height: 50px; 
-    box-sizing: border-box; 
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 50px;
+  padding: 20px;
+  font-weight: bold;
+  height: 50px;
+  box-sizing: border-box;
 }
 
-
-
 .SearchContainer > form > input {
-    width: 300px;
-    height: 2rem;
-    box-sizing: border-box;
-    padding: 5px 10px;
-    border: solid #5B40E4 1px;
+  width: 300px;
+  height: 2rem;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  border: solid #5b40e4 1px;
 }
 
 .SearchContainer > form > button {
-    width: 100px;
-    height: 2rem;
-    box-sizing: border-box;
-    padding: 5px 10px;
-    border: solid #5B40E4 1px;
-    background-color: #5B40E4;
-    color: white;
+  width: 100px;
+  height: 2rem;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  border: solid #5b40e4 1px;
+  background-color: #5b40e4;
+  color: white;
 }
 
 .SearchContainer > select {
-    width: 200px;
-    height: 2rem;
-    box-sizing: border-box;
-    padding: 5px 10px;
-    border: solid #5B40E4 1px;
+  width: 200px;
+  height: 2rem;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  border: solid #5b40e4 1px;
 }
 
 .TableFooter {
-    height: 50px;
-    box-sizing: border-box;
-    padding: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
 
 .TableFooter > button {
-    width: 100px;
-    height: 2rem;
-    box-sizing: border-box;
-    padding: 5px 10px;
-    border: solid #5B40E4 1px;
-    background-color: #5B40E4;
-    color: white;
-}   
+  width: 100px;
+  height: 2rem;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  border: solid #5b40e4 1px;
+  background-color: #5b40e4;
+  color: white;
+}
 
 .TableFooter > button:active {
-    background-color: #3e25b9;
-    color: white;
+  background-color: #3e25b9;
+  color: white;
 }

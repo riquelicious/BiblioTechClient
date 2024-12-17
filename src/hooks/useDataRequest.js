@@ -44,7 +44,6 @@ function useSelectAllItems(entries) {
   const [selectedItems, setSelectedItems] = useState([]);
 
   const handleCheckAll = () => {
-    console.log(selectedItems);
     if (selectedItems === null) return;
     if (selectedItems.length === entries.length) {
       setSelectedItems([]); // Deselect all if all were selected
@@ -63,18 +62,4 @@ function useSelectAllItems(entries) {
   return { selectedItems, handleCheckAll, handleCheckboxChange };
 }
 
-const useUpdateEntries = (entries_length, update_path) => {
-  const navigate = useNavigate();
-  const useHandleUpdate = () => {
-    if (entries_length === 0) {
-      alert("Please select at least one to update.");
-      return;
-    }
-    navigate(update_path, {
-      state: { account_ids: selectedBooks },
-    });
-  };
-  return useHandleUpdate;
-};
-
-export { usePagination, fetchPagedData, useSelectAllItems, useUpdateEntries };
+export { usePagination, fetchPagedData, useSelectAllItems };

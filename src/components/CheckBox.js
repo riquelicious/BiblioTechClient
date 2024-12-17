@@ -27,6 +27,7 @@ const CheckBox = (props) => {
         name={props.name}
         onChange={props.onChange}
         checked={props.checked}
+        disabled={props.disabled}
       />
       <label className="form-check-label" htmlFor={props.id}>
         {props.label}
