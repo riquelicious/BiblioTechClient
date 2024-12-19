@@ -62,13 +62,28 @@
 }
 
 .EntriesTable {
+  position: relative;
   top: 0px;
   bottom: 0px;
   overflow-y: scroll;
   overflow-x: hidden;
   border: solid #cccccc;
   border-width: 0px 0px 1px 0px;
+  display: flex;
+  flex-direction: column;
 }
+/* 
+.EntriesTable > div > img {
+  justify-self: center;
+  height: 100%;
+}
+*/
+/* .EntriesTable > div {
+  min-height: 100%;
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+} */
 
 .Empty {
   align-items: center;
@@ -111,9 +126,13 @@
   width: 100%;
 }
 
-/* .EntryColumns > input[type="checkbox"] {
+.EntryColumns > div:last-child {
+  padding: 0px !important;
+}
 
-} */
+.EntryColumns > div > img {
+  height: 100%;
+}
 
 .TableHeaderColumns > p,
 .EntryColumns > p {

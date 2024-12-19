@@ -2,12 +2,13 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("node:path");
 import "./hooks/MenuControls.js";
 import "./API/Database.js";
-
+import { URLPaths } from "./config";
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
   app.quit();
 }
-
+app.commandLine.appendSwitch("disable-autofill-keyboard-accessory");
+app.commandLine.appendSwitch("disable-component-update");
 const createWindow = () => {
   const nonce = Math.random().toString(36).substring(2, 15);
   // Create the browser window.
@@ -16,6 +17,7 @@ const createWindow = () => {
     minHeight: 680,
     width: 1000,
     height: 680,
+    icon: path.join(__dirname, "../../src/assets/Icon.ico"),
     //frame: false,
     titleBarStyle: "hidden",
     hasShadow: true,
@@ -27,6 +29,7 @@ const createWindow = () => {
       zoomFactor: 1,
     },
   });
+  console.log(path.join(__dirname, "../../src/assets/Icon.ico"));
   // mainWindow.webContents.on('did-navigate', (event, url) => {
   // 	console.log('Navigated to:', url);
   // });
@@ -39,7 +42,8 @@ const createWindow = () => {
             "default-src 'self';",
             "script-src 'self' 'unsafe-inline' 'unsafe-eval';",
             "style-src-elem 'self' 'unsafe-inline';", // Allows dynamic style elements
-            "connect-src 'self' http://localhost:5000;", // Allow connections to localhost:5000
+            `connect-src 'self' ${URLPaths.API_URL};`, // Allow connections to the API URL
+            `img-src 'self' data: ${URLPaths.API_URL};`, // Correctly format img-src
           ].join(" "),
         },
       });

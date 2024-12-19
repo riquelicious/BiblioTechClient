@@ -1,12 +1,11 @@
 import React from "react";
-import styles from "./styles/UpdateData.module.css";
+import styles from "./styles/Page.module.css";
 import { TableHeader, Entry } from "../../components/UpdateDataComponents.jsx";
 import { ControlBar } from "../../components/ViewDataComponents.jsx";
 import { EntriesTable } from "../../components/ViewDataComponents.jsx";
 import { useLocation } from "react-router-dom";
-import CheckBox from "../../components/CheckBox.js";
 
-const UpdateUserTypes = () => {
+const UpdateCategory = () => {
   const location = useLocation();
   const { account_ids } = location.state || { account_ids: [] };
   const [entriesToUpdate, setEntriesToUpdate] = React.useState([]);
@@ -32,7 +31,8 @@ const UpdateUserTypes = () => {
 
   const fetchEntries = async () => {
     try {
-      const response = await window.electronAPI.getUserTypesById(account_ids);
+      const response = await window.electronAPI.getCategoriesById(account_ids);
+      console.log("response", response);
       if (response?.data) {
         console.log(response.data);
         setEntriesToUpdate(response.data);
@@ -51,20 +51,8 @@ const UpdateUserTypes = () => {
       alert("Please select at least one entry to update.");
       return;
     }
-    if (entriesToUpdate.find((entry) => entry[0] === 1)) {
-      alert(
-        "Cannot update Admin.\n\nIt is a default type and cannot be modified."
-      );
-      return;
-    }
-    if (entriesToUpdate.find((entry) => entry[0] === 2)) {
-      alert(
-        "Cannot update User.\n\nIt is a default type and cannot be modified."
-      );
-      return;
-    }
     try {
-      const response = await window.electronAPI.updateUserTypes(
+      const response = await window.electronAPI.updateCategories(
         entriesToUpdate
       );
       if (response?.message) {
@@ -83,15 +71,10 @@ const UpdateUserTypes = () => {
     <div className={styles.PageWrapper}>
       <div className={styles.Page}>
         <TableHeader>
-          <p>NAME</p>
-          <p>ACCOUNT</p>
-          <p>BOOKS</p>
-          <p>CATEGORIES</p>
-          <p>USER TYPE</p>
+          <p>CATEGORY NAME</p>
         </TableHeader>
         <EntriesTable entriesLength={entriesToUpdate.length}>
           {entriesToUpdate.map((entries) => {
-            console.log(entries[4]);
             return (
               <Entry
                 value={entries}
@@ -102,39 +85,6 @@ const UpdateUserTypes = () => {
                   type="text"
                   onChange={(e) => handleChange(entries[0], 1, e.target.value)}
                   value={entries[1]}
-                  disabled={entries[0] === 1}
-                />
-                <CheckBox
-                  id={`${entries[0]}-account`}
-                  checked={entries[2]}
-                  onChange={(e) =>
-                    handleChange(entries[0], 2, e.target.checked)
-                  }
-                  disabled={entries[0] === 1}
-                />
-                <CheckBox
-                  id={`${entries[0]}-books`}
-                  checked={entries[3]}
-                  onChange={(e) =>
-                    handleChange(entries[0], 3, e.target.checked)
-                  }
-                  disabled={entries[0] === 1}
-                />
-                <CheckBox
-                  id={`${entries[0]}-categories`}
-                  checked={entries[4]}
-                  onChange={(e) =>
-                    handleChange(entries[0], 4, e.target.checked)
-                  }
-                  disabled={entries[0] === 1}
-                />
-                <CheckBox
-                  id={`${entries[0]}-userType`}
-                  checked={entries[5]}
-                  onChange={(e) =>
-                    handleChange(entries[0], 5, e.target.checked)
-                  }
-                  disabled={entries[0] === 1}
                 />
               </Entry>
             );
@@ -146,4 +96,4 @@ const UpdateUserTypes = () => {
   );
 };
 
-export default UpdateUserTypes;
+export default UpdateCategory;

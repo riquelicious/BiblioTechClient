@@ -64,6 +64,7 @@ const UpdateAccounts = () => {
       const response = await window.electronAPI.updateAccounts(entriesToUpdate);
       if (response?.message) {
         setOutput(response.message);
+        setEntriesToUpdate([]);
       } else {
         setEntriesToUpdate([]);
       }

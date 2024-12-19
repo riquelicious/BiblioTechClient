@@ -13,10 +13,25 @@ const LoginPanel = () => {
     event.preventDefault();
     if (!email || !password) {
       setError("All fields are required");
+      alert("All fields are required");
       return;
     }
 
-    navigate("/main/dashboard");
+    login();
+
+    // navigate("/main/dashboard");
+  };
+  const login = async () => {
+    try {
+      const response = await window.electronAPI.login({
+        account: { email, password },
+      });
+      console.log(response);
+
+      if (response?.message) {
+        setError(response.message);
+      }
+    } catch (error) {}
   };
 
   return (
@@ -51,7 +66,7 @@ const LoginPanel = () => {
       {<p className="error-message">{error}</p>}
       <div className="button-container">
         <DefaultButton type="submit" text="Login" />
-        <Link to="/sign-up" className="">
+        <Link to="/login/sign-up" className="">
           Don’t have an account?
         </Link>
       </div>

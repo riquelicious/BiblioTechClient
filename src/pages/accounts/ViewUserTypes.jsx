@@ -26,7 +26,7 @@ const ViewUserTypes = () => {
   const { selectedItems, handleCheckAll, handleCheckboxChange } =
     useSelectAllItems(entries);
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [searchFilter, setSearchFilter] = React.useState("username");
+  const [searchFilter, setSearchFilter] = React.useState("user_type");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,18 +68,13 @@ const ViewUserTypes = () => {
   return (
     <div className={styles.PageWrapper}>
       <div className={styles.Page}>
-        {/* Top Bar */}
         <SearchContainer
-          onSubmit={handleSubmit}
           onChange={setSearchTerm}
-          filterChange={(e) => {
-            setSearchFilter(e.target.value);
-            console.log(e.target.value);
-          }}
+          setSelectedFilter={setSearchFilter}
+          value={searchTerm}
+          onSubmit={handleSubmit}
         >
-          <option value="username">USERNAME</option>
-          <option value="email">EMAIL</option>
-          <option value="password">PASSWORD</option>
+          <option value="user_type">NAME</option>
         </SearchContainer>
 
         <TableHeader

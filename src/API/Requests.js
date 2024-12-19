@@ -2,6 +2,7 @@ const axios = require("axios");
 const { URLPaths } = require("../config");
 
 const useRequest = async (url, method = "GET", payload = null) => {
+  console.log("sending request to ", url);
   const options = {
     method,
     url: URLPaths.API_URL + url,

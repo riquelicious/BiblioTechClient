@@ -12,6 +12,23 @@
   align-items: center;
 }
 
+.EntryColumns > div > img {
+  height: 100%;
+}
+
+.EntryColumns > div {
+  align-items: center;
+  display: flex;
+  font-size: 0.7rem;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+  padding: 0px 0px 0px 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
 .TableHeaderColumns > p,
 .EntryColumns > p {
   align-items: center;
@@ -38,6 +55,7 @@
   box-sizing: border-box;
   padding: 0px 1rem;
   margin: 0px;
+  max-width: 300px;
 }
 
 .EntryColumns > input[type="text"]:focus,
@@ -73,8 +91,76 @@
 
 .Entry:hover {
   background-color: #f5f5f5;
-  cursor: pointer;
+  /* cursor: pointer; */
   box-shadow: inset #5b40e421 0px 0px 5px 0px;
+}
+
+.BookEntry {
+  display: grid;
+  grid-template-rows: 40px 1fr;
+}
+
+.BookEntry > div {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+.BookEntry {
+  border: solid #eeeeee;
+  border-width: 0px 0px 1px 0px;
+  transition: all 0.2s ease;
+}
+
+.BookEntry:hover {
+  background-color: #f5f5f5;
+  box-shadow: inset #5b40e421 0px 0px 5px 0px;
+}
+
+.CategoryBar {
+  display: block !important;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  height: auto;
+  transition: all 0.2s ease;
+}
+
+.CategoryBar > div {
+  background-color: #eeeeee;
+  border-radius: 5px;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 10px;
+  min-height: 100px;
+  align-items: start;
+  transition: all 0.2s ease;
+}
+
+.Hide {
+  height: 0px !important;
+  min-height: 0px !important;
+  overflow: hidden;
+  padding: 0px 10px !important;
+}
+
+.CategoryBar > div > div {
+  display: flex;
+  flex-direction: row;
+  width: 100px !important;
+  font-size: 0.7rem;
+  gap: 10px;
+}
+
+.CategoryBar > p {
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin: 0px;
+  padding: 0px;
+  text-align: right;
+  color: #5b40e4;
 }
 
 .CheckBoxContainer > button {

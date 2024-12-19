@@ -5,20 +5,18 @@ import { Dropdown, TextBox, BottomBar } from "../../components/Input.jsx";
 import styles from "./styles/Page.module.css";
 import { Entry, TableHeader } from "../../components/UpdateDataComponents.jsx";
 import { ControlBar } from "../../components/ViewDataComponents.jsx";
+import CheckBox from "../../components/CheckBox.js";
 
-const InsertManageAccounts = () => {
-  const [entries, setEntries] = React.useState([["", "", "", ""]]);
+const InsertUserTypes = () => {
+  const [entries, setEntries] = React.useState([["", 0, 0, 0, 0]]);
   const [stringResponse, setResponse] = React.useState(null);
   const [userTypes, setUserTypes] = React.useState([]);
 
   React.useEffect(() => {
-    getUserTypes();
-  }, []);
-
-  React.useEffect(() => {
     if (entries.length === 0) {
-      setEntries([["", "", "", ""]]);
+      setEntries([["", 0, 0, 0, 0]]);
     }
+    console.log(entries);
   }, [entries]);
 
   const handleRemoveEntry = (id) => {
@@ -26,22 +24,15 @@ const InsertManageAccounts = () => {
     setEntries(newInputValues);
   };
 
-  const getUserTypes = async () => {
-    const response = await window.electronAPI.getUserTypes();
-    console.log(response);
-    if (response?.data) {
-      setUserTypes(response.data);
-    }
-  };
-
   const handleInsert = async () => {
     try {
-      const response = await window.electronAPI.insertAccounts(entries);
+      const response = await window.electronAPI.insertUserTypes(entries);
+      console.log(response);
       if (response?.message) {
         setResponse(response?.message);
-        setEntries([["", "", "", ""]]);
+        setEntries([["", 0, 0, 0, 0]]);
       } else {
-        setEntries([["", "", "", ""]]);
+        setEntries([["", 0, 0, 0, 0]]);
       }
     } catch (error) {
       console.log(error);
@@ -49,16 +40,14 @@ const InsertManageAccounts = () => {
   };
 
   const handleInputChange = (entry_id, inputIndex, value) => {
+    console.log(entry_id, inputIndex, value);
     const newEntries = [...entries];
     newEntries[entry_id][inputIndex] = value;
     setEntries(newEntries);
 
     const lastGroup = newEntries[newEntries.length - 1];
-    if (
-      lastGroup.every((input) => input !== "") &&
-      entry_id === newEntries.length - 1
-    ) {
-      setEntries([...newEntries, ["", "", "", ""]]);
+    if (lastGroup[0] !== "" && entry_id === newEntries.length - 1) {
+      setEntries([...newEntries, ["", 0, 0, 0, 0]]);
     }
   };
 
@@ -66,9 +55,10 @@ const InsertManageAccounts = () => {
     <div className={styles.PageWrapper}>
       <div className={styles.Page}>
         <TableHeader>
-          <p>USERNAME</p>
-          <p>EMAIL</p>
-          <p>PASSWORD</p>
+          <p>NAME</p>
+          <p>ACCOUNT</p>
+          <p>BOOKS</p>
+          <p>CATEGORIES</p>
           <p>USER TYPE</p>
         </TableHeader>
         <div className={styles.MaxHeightContainer}>
@@ -79,38 +69,42 @@ const InsertManageAccounts = () => {
             >
               <input
                 type="text"
-                placeholder="Username"
+                placeholder="Name"
                 onChange={(e) => handleInputChange(entry_id, 0, e.target.value)}
                 value={entry[0]}
               />
-              <input
-                type="text"
-                placeholder="Email"
-                onChange={(e) => handleInputChange(entry_id, 1, e.target.value)}
+
+              <CheckBox
                 value={entry[1]}
+                onChange={(e) =>
+                  handleInputChange(entry_id, 1, e.target.checked)
+                }
+                id={`account-${entry_id}`}
               />
-              <input
-                type="text"
-                placeholder="Password"
-                onChange={(e) => handleInputChange(entry_id, 2, e.target.value)}
+
+              <CheckBox
                 value={entry[2]}
+                onChange={(e) =>
+                  handleInputChange(entry_id, 2, e.target.checked)
+                }
+                id={`books-${entry_id}`}
               />
-              <select
-                name=""
-                id=""
-                onChange={(e) => handleInputChange(entry_id, 3, e.target.value)}
+
+              <CheckBox
                 value={entry[3]}
-              >
-                <option value="">Select User Type</option>
-                {/*Change options */}
-                {(userTypes || []).map((userType) => {
-                  return (
-                    <option key={userType[0]} value={userType[0]}>
-                      {userType[1]}
-                    </option>
-                  );
-                })}
-              </select>
+                onChange={(e) =>
+                  handleInputChange(entry_id, 3, e.target.checked)
+                }
+                id={`categories-${entry_id}`}
+              />
+
+              <CheckBox
+                value={entry[4]}
+                onChange={(e) =>
+                  handleInputChange(entry_id, 4, e.target.checked)
+                }
+                id={`userType-${entry_id}`}
+              />
             </Entry>
           ))}
         </div>
@@ -120,4 +114,4 @@ const InsertManageAccounts = () => {
   );
 };
 
-export default InsertManageAccounts;
+export default InsertUserTypes;

@@ -27,6 +27,7 @@ const fetchPagedData = (fetchMethod) => {
   const fetchEntries = async (page, filter, search) => {
     try {
       const response = await fetchMethod(page, filter, search);
+      console.log("response", response?.data);
       if (response?.data) {
         setEntries(response.data);
       } else {

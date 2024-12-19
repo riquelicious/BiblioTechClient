@@ -2,6 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import React, { Children } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles/AccountsWindow.module.css";
+
 import iLogo from "../../assets/icons/sidebar/Logo.svg";
 import iDashboard from "../../assets/icons/sidebar/Dashboard.svg";
 import iBooks from "../../assets/icons/sidebar/Books.svg";
@@ -10,6 +11,11 @@ import iAccounts from "../../assets/icons/sidebar/Accounts.svg";
 import iSettings from "../../assets/icons/sidebar/Settings.svg";
 import iHelp from "../../assets/icons/sidebar/Help.svg";
 
+import iView from "../../assets/icons/sidebar/View.svg";
+import iInsert from "../../assets/icons/sidebar/Insert.svg";
+import iUpdate from "../../assets/icons/sidebar/Update.svg";
+import iDelete from "../../assets/icons/sidebar/Delete.svg";
+
 const AccountsWindow = () => {
   return (
     <div className={styles.MainWindow}>
@@ -17,17 +23,33 @@ const AccountsWindow = () => {
         <div className={styles.sideBarTitle}>
           <p>ACCOUNTS</p>
         </div>
-        <NavItem to="/accounts/view">View Accounts</NavItem>
-        <NavItem to="/accounts/insert">Insert Accounts</NavItem>
-        <NavItem to="/accounts/update">Update Accounts</NavItem>
-        <NavItem to="/accounts/delete">Delete Accounts</NavItem>
+        <NavItem src={iView} to="/accounts/view">
+          View Accounts
+        </NavItem>
+        <NavItem src={iInsert} to="/accounts/insert">
+          Insert Accounts
+        </NavItem>
+        <NavItem src={iUpdate} to="/accounts/update">
+          Update Accounts
+        </NavItem>
+        <NavItem src={iDelete} to="/accounts/delete">
+          Delete Accounts
+        </NavItem>
         <div className={styles.sideBarTitle}>
           <p>ACCOUNT TYPES &</p>
         </div>
-        <NavItem to="/accounts/types/view">View Account Types</NavItem>
-        <NavItem to="/accounts/types/insert">Insert Accounts</NavItem>
-        <NavItem to="/accounts/types/update">Update Accounts</NavItem>
-        <NavItem to="/accounts/types/delete">Delete Accounts</NavItem>
+        <NavItem src={iView} to="/accounts/types/view">
+          View Account Types
+        </NavItem>
+        <NavItem src={iInsert} to="/accounts/types/insert">
+          Insert Account Types
+        </NavItem>
+        <NavItem src={iUpdate} to="/accounts/types/update">
+          Update Account Types
+        </NavItem>
+        <NavItem src={iDelete} to="/accounts/types/delete">
+          Delete Account Types
+        </NavItem>
       </Sidebar>
       <Outlet />
     </div>
@@ -40,17 +62,57 @@ const BooksWindow = () => {
         <div className={styles.sideBarTitle}>
           <p>BOOKS</p>
         </div>
-        <NavItem to="/books/view">View Books</NavItem>
-        <NavItem to="/books/insert">Insert Books</NavItem>
-        <NavItem to="/books/update">Update Books</NavItem>
-        <NavItem to="/books/delete">Delete Books</NavItem>
+        <NavItem src={iView} to="/books/view">
+          View Books
+        </NavItem>
+        <NavItem src={iInsert} to="/books/insert">
+          Insert Books
+        </NavItem>
+        <NavItem src={iUpdate} to="/books/update">
+          Update Books
+        </NavItem>
+        <NavItem src={iDelete} to="/books/delete">
+          Delete Books
+        </NavItem>
         <div className={styles.sideBarTitle}>
           <p>CATEGORIES</p>
         </div>
-        <NavItem to="/books/category/view">View Category</NavItem>
-        <NavItem to="/books/category/insert">Insert Category</NavItem>
-        <NavItem to="/books/category/update">Update Category</NavItem>
-        <NavItem to="/books/category/delete">Delete Category</NavItem>
+        <NavItem src={iView} to="/books/category/view">
+          View Category
+        </NavItem>
+        <NavItem src={iInsert} to="/books/category/insert">
+          Insert Category
+        </NavItem>
+        <NavItem src={iUpdate} to="/books/category/update">
+          Update Category
+        </NavItem>
+        <NavItem src={iDelete} to="/books/category/delete">
+          Delete Category
+        </NavItem>
+      </Sidebar>
+      <Outlet />
+    </div>
+  );
+};
+const RecordsWindow = () => {
+  return (
+    <div className={styles.MainWindow}>
+      <Sidebar>
+        <div className={styles.sideBarTitle}>
+          <p>RECORDS</p>
+        </div>
+        <NavItem src={iView} to="/records/copies">
+          Copies Available
+        </NavItem>
+        <NavItem src={iInsert} to="/records/borrow">
+          Borrowers Record
+        </NavItem>
+        <NavItem src={iUpdate} to="/records/user">
+          User Record
+        </NavItem>
+        <NavItem src={iDelete} to="/records/assigned">
+          Assigned Categories
+        </NavItem>
       </Sidebar>
       <Outlet />
     </div>
@@ -61,6 +123,7 @@ const NavItem = (props) => {
   return (
     <NavLink to={props.to}>
       <div className={styles.NavItem}>
+        <img src={props.src} alt="" />
         <p>{props.children}</p>
       </div>
     </NavLink>
@@ -72,12 +135,12 @@ const Sidebar = (props) => {
     <div className={styles.sidebarContainer}>
       <ul className={styles.sidebar}>
         <SidebarEntry src={iLogo} />
-        <SidebarEntry src={iDashboard} />
+        <SidebarEntry to="/records" src={iDashboard} />
         <SidebarEntry to="/books" src={iBooks} />
-        <SidebarEntry src={iQR} />
+        {/* <SidebarEntry src={iQR} /> */}
         <SidebarEntry to="/accounts" src={iAccounts} />
-        <SidebarEntry src={iSettings} />
-        <SidebarEntry src={iHelp} />
+        {/* <SidebarEntry src={iSettings} /> */}
+        {/* <SidebarEntry src={iHelp} /> */}
       </ul>
       <div className={styles.sideBarMain}>
         <div className={styles.sideBarTitle}>
@@ -106,4 +169,4 @@ const SidebarEntry = (props) => {
   );
 };
 
-export { AccountsWindow, BooksWindow };
+export { AccountsWindow, BooksWindow, RecordsWindow };
