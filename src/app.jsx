@@ -175,7 +175,7 @@ function App() {
     window.electronAPI.receiveFromMain("request_borrow", (data) => {
       console.log(data);
       if (data) {
-        if (isModalAllowed === false) return;
+        // if (isModalAllowed === false) return;
         setIsModalOpen(true);
         setRequestData(data);
       }
@@ -185,7 +185,7 @@ function App() {
   return (
     <>
       <Overlays
-        isOpen={isModalOpen && isModalAllowed}
+        isOpen={isModalOpen}
         data={requestData}
         onAccept={onAccept}
         onDecline={onDecline}
