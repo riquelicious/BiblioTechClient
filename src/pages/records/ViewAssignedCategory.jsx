@@ -17,7 +17,7 @@ import {
 } from "../../components/UpdateDataComponents.jsx";
 import { ControlBar } from "../../components/ViewDataComponents.jsx";
 import styles from "./styles/Page.module.css";
-
+ 
 const ViewAssignedCategory = () => {
   const navigate = useNavigate();
   const fetchCopies = async (page, filter, search) => {

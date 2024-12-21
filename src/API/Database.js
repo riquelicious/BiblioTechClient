@@ -173,3 +173,11 @@ ipcMain.handle("assigned-fetch", async (event, page, filter, search) => {
 ipcMain.handle("accounts-login", async (event, account) => {
   return await useRequest(URLPaths.ACCOUNTS_LOGIN, "POST", account);
 });
+
+ipcMain.handle("request-accept", async (event, book_id, username, days) => {
+  return await useRequest(URLPaths.REQUEST_ACCEPT, "POST", {
+    book_id,
+    username,
+    days,
+  });
+});

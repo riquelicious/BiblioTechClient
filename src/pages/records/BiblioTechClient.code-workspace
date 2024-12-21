@@ -1,0 +1,33 @@
+{
+  "folders": [
+	{
+		"path": "../../.."
+	},
+	{
+		"path": "../../../../BiblioTechServer"
+	}
+],
+  "settings": {
+    "svg.preview.background": "custom",
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#5b4fe1",
+      "activityBar.background": "#5b4fe1",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "activityBarBadge.background": "#6d1a13",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "commandCenter.border": "#e7e7e799",
+      "sash.hoverBorder": "#5b4fe1",
+      "statusBar.background": "#3425d8",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#5b4fe1",
+      "statusBarItem.remoteBackground": "#3425d8",
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "titleBar.activeBackground": "#3425d8",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveBackground": "#3425d899",
+      "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#3425D8"
+  }
+}

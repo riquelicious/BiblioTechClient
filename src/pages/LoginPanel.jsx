@@ -3,11 +3,13 @@ import iLogo from "../assets/icons/Logo.svg";
 import { LogoTextBox, DefaultButton } from "../components/Input.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import { useAccount, usePermissions } from "../context/AppContext.js";
 const LoginPanel = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { user, setUser } = useAccount();
+  const { permissions, setPermissions } = usePermissions();
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,18 +20,29 @@ const LoginPanel = () => {
     }
 
     login();
-
-    // navigate("/main/dashboard");
   };
+
+  React.useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   const login = async () => {
     try {
       const response = await window.electronAPI.login({
         account: { email, password },
       });
-      console.log(response);
-
-      if (response?.message) {
-        setError(response.message);
+      if (response?.data[0]) {
+        setUser(response?.data[0]);
+        const response2 = await window.electronAPI.getUserTypesById([
+          response?.data[0][4],
+        ]);
+        if (response2?.data[0]) {
+          console.log(response2?.data[0]);
+          setPermissions(response2?.data[0]);
+        }
+        navigate("/records/copies");
+      } else {
+        setError("Invalid email or password");
       }
     } catch (error) {}
   };
@@ -66,9 +79,6 @@ const LoginPanel = () => {
       {<p className="error-message">{error}</p>}
       <div className="button-container">
         <DefaultButton type="submit" text="Login" />
-        <Link to="/login/sign-up" className="">
-          Don’t have an account?
-        </Link>
       </div>
     </motion.form>
   );

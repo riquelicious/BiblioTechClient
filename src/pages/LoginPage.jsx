@@ -7,7 +7,6 @@ import LoginIconDisplay from "../assets/img/LoginDisplay.svg";
 function LoginPage() {
   return (
     <div className="LoginPage">
-      {/* <LoginPanel /> */}
       <Outlet />
       <DisplayPanel />
     </div>

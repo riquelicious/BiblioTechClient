@@ -15,80 +15,99 @@ import iView from "../../assets/icons/sidebar/View.svg";
 import iInsert from "../../assets/icons/sidebar/Insert.svg";
 import iUpdate from "../../assets/icons/sidebar/Update.svg";
 import iDelete from "../../assets/icons/sidebar/Delete.svg";
+import { usePermissions } from "../../context/AppContext";
 
 const AccountsWindow = () => {
+  const { permissions } = usePermissions();
   return (
     <div className={styles.MainWindow}>
       <Sidebar>
-        <div className={styles.sideBarTitle}>
-          <p>ACCOUNTS</p>
-        </div>
-        <NavItem src={iView} to="/accounts/view">
-          View Accounts
-        </NavItem>
-        <NavItem src={iInsert} to="/accounts/insert">
-          Insert Accounts
-        </NavItem>
-        <NavItem src={iUpdate} to="/accounts/update">
-          Update Accounts
-        </NavItem>
-        <NavItem src={iDelete} to="/accounts/delete">
-          Delete Accounts
-        </NavItem>
-        <div className={styles.sideBarTitle}>
-          <p>ACCOUNT TYPES &</p>
-        </div>
-        <NavItem src={iView} to="/accounts/types/view">
-          View Account Types
-        </NavItem>
-        <NavItem src={iInsert} to="/accounts/types/insert">
-          Insert Account Types
-        </NavItem>
-        <NavItem src={iUpdate} to="/accounts/types/update">
-          Update Account Types
-        </NavItem>
-        <NavItem src={iDelete} to="/accounts/types/delete">
-          Delete Account Types
-        </NavItem>
+        {permissions[2] && (
+          <>
+            <div className={styles.sideBarTitle}>
+              <p>ACCOUNTS</p>
+            </div>
+            <NavItem src={iView} to="/accounts/view">
+              View Accounts
+            </NavItem>
+            <NavItem src={iInsert} to="/accounts/insert">
+              Insert Accounts
+            </NavItem>
+            <NavItem src={iUpdate} to="/accounts/update">
+              Update Accounts
+            </NavItem>
+            <NavItem src={iDelete} to="/accounts/delete">
+              Delete Accounts
+            </NavItem>
+          </>
+        )}
+        {permissions[5] && (
+          <>
+            <div className={styles.sideBarTitle}>
+              <p>ACCOUNT TYPES &</p>
+            </div>
+            <NavItem src={iView} to="/accounts/types/view">
+              View Account Types
+            </NavItem>
+            <NavItem src={iInsert} to="/accounts/types/insert">
+              Insert Account Types
+            </NavItem>
+            <NavItem src={iUpdate} to="/accounts/types/update">
+              Update Account Types
+            </NavItem>
+            <NavItem src={iDelete} to="/accounts/types/delete">
+              Delete Account Types
+            </NavItem>
+          </>
+        )}
       </Sidebar>
       <Outlet />
     </div>
   );
 };
 const BooksWindow = () => {
+  const { permissions } = usePermissions();
   return (
     <div className={styles.MainWindow}>
       <Sidebar>
-        <div className={styles.sideBarTitle}>
-          <p>BOOKS</p>
-        </div>
-        <NavItem src={iView} to="/books/view">
-          View Books
-        </NavItem>
-        <NavItem src={iInsert} to="/books/insert">
-          Insert Books
-        </NavItem>
-        <NavItem src={iUpdate} to="/books/update">
-          Update Books
-        </NavItem>
-        <NavItem src={iDelete} to="/books/delete">
-          Delete Books
-        </NavItem>
-        <div className={styles.sideBarTitle}>
-          <p>CATEGORIES</p>
-        </div>
-        <NavItem src={iView} to="/books/category/view">
-          View Category
-        </NavItem>
-        <NavItem src={iInsert} to="/books/category/insert">
-          Insert Category
-        </NavItem>
-        <NavItem src={iUpdate} to="/books/category/update">
-          Update Category
-        </NavItem>
-        <NavItem src={iDelete} to="/books/category/delete">
-          Delete Category
-        </NavItem>
+        {permissions[3] && (
+          <>
+            <div className={styles.sideBarTitle}>
+              <p>BOOKS</p>
+            </div>
+            <NavItem src={iView} to="/books/view">
+              View Books
+            </NavItem>
+            <NavItem src={iInsert} to="/books/insert">
+              Insert Books
+            </NavItem>
+            <NavItem src={iUpdate} to="/books/update">
+              Update Books
+            </NavItem>
+            <NavItem src={iDelete} to="/books/delete">
+              Delete Books
+            </NavItem>
+          </>
+        )}
+        {permissions[4] && (
+          <>
+            <div className={styles.sideBarTitle}>
+              <p>CATEGORIES</p>
+            </div>
+            <NavItem src={iView} to="/books/category/view">
+              View Category
+            </NavItem>
+            <NavItem src={iInsert} to="/books/category/insert">
+              Insert Category
+            </NavItem>
+            <NavItem src={iUpdate} to="/books/category/update">
+              Update Category
+            </NavItem>
+            <NavItem src={iDelete} to="/books/category/delete">
+              Delete Category
+            </NavItem>
+          </>
+        )}
       </Sidebar>
       <Outlet />
     </div>
@@ -131,14 +150,19 @@ const NavItem = (props) => {
 };
 
 const Sidebar = (props) => {
+  const { permissions } = usePermissions();
   return (
     <div className={styles.sidebarContainer}>
       <ul className={styles.sidebar}>
-        <SidebarEntry src={iLogo} />
+        <SidebarEntry to="/login" src={iLogo} />
         <SidebarEntry to="/records" src={iDashboard} />
-        <SidebarEntry to="/books" src={iBooks} />
+        {(permissions[3] || permissions[4]) && (
+          <SidebarEntry to="/books" src={iBooks} />
+        )}
         {/* <SidebarEntry src={iQR} /> */}
-        <SidebarEntry to="/accounts" src={iAccounts} />
+        {(permissions[2] || permissions[5]) && (
+          <SidebarEntry to="/accounts" src={iAccounts} />
+        )}
         {/* <SidebarEntry src={iSettings} /> */}
         {/* <SidebarEntry src={iHelp} /> */}
       </ul>

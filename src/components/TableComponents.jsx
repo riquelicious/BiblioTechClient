@@ -63,11 +63,12 @@ const BookData = (props) => {
 };
 
 const BookStatus = ({ status }) => {
+  console.log(status);
   if (status === "available") {
     return (
       <div className="DataStatusAvailable DataStatus">
         <div>
-          <p>{status.toUpperCase()}</p>
+          <p>{status || ""}</p>
         </div>
       </div>
     );
@@ -75,7 +76,7 @@ const BookStatus = ({ status }) => {
     return (
       <div className="DataStatusBorrowed DataStatus">
         <div>
-          <p>{status.toUpperCase()}</p>
+          <p>{status || ""}</p>
         </div>
       </div>
     );

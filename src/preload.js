@@ -5,7 +5,8 @@ contextBridge.exposeInMainWorld("electronAPI", {
   minimizeWindow: () => ipcRenderer.send("minimize-window"),
   toggleMaximize: () => ipcRenderer.send("toggle-maximize"),
   sendBook: (book) => ipcRenderer.send("send-books", book),
-
+  receiveFromMain: (channel, func) =>
+    ipcRenderer.on(channel, (event, ...args) => func(...args)),
   //========================================
   // SECTION: Accounts
   //========================================
@@ -144,5 +145,9 @@ contextBridge.exposeInMainWorld("electronAPI", {
 
   fetchAssignedRecords: (page, filter, search) => {
     return ipcRenderer.invoke("assigned-fetch", page, filter, search);
+  },
+
+  acceptRequest: (book_id, username, days) => {
+    return ipcRenderer.invoke("request-accept", book_id, username, days);
   },
 });

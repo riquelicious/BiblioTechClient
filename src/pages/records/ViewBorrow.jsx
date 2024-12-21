@@ -87,6 +87,8 @@ const ViewBorrow = () => {
                   <p>{entry[0]}</p>
                   <p>{entry[1]}</p>
                   <p>{entry[2]}</p>
+                  <p>{entry[3]}</p>
+                  <p>{entry[4]}</p>
                 </RecordsEntry>
               )
             )

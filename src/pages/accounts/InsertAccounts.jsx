@@ -86,14 +86,14 @@ const InsertManageAccounts = () => {
               <input
                 type="text"
                 placeholder="Email"
-                onChange={(e) => handleInputChange(entry_id, 1, e.target.value)}
-                value={entry[1]}
+                onChange={(e) => handleInputChange(entry_id, 2, e.target.value)}
+                value={entry[2]}
               />
               <input
                 type="text"
                 placeholder="Password"
-                onChange={(e) => handleInputChange(entry_id, 2, e.target.value)}
-                value={entry[2]}
+                onChange={(e) => handleInputChange(entry_id, 1, e.target.value)}
+                value={entry[1]}
               />
               <select
                 name=""

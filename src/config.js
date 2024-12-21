@@ -1,5 +1,6 @@
 export const URLPaths = Object.freeze({
   API_URL: "http://localhost:5000",
+  WS_URL: "ws://localhost:5000",
   //accounts
   ACCOUNTS_LOGIN: "/accounts/login",
   ACCOUNTS_INSERT: "/accounts/insert",
@@ -36,6 +37,8 @@ export const URLPaths = Object.freeze({
   RECORDS_BORROW: "/records/borrow",
   RECORDS_USER: "/records/user",
   RECORDS_ASSIGNED: "/records/assigned",
+
+  REQUEST_ACCEPT: "/request/accept",
 
   HOME: "/",
 });

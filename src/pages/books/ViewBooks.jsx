@@ -14,8 +14,9 @@ import {
 } from "../../components/ViewDataComponents.jsx";
 import { ControlBar } from "../../components/ViewDataComponents.jsx";
 import styles from "./styles/Page.module.css";
-// import { UrlPaths } from "../../constants/UrlPaths.js";
 import { URLPaths } from "../../config";
+import { useModal } from "../../context/AppContext.js";
+
 const ViewBook = () => {
   const navigate = useNavigate();
   const fetchBooks = async (page, filter, search) => {
@@ -27,6 +28,7 @@ const ViewBook = () => {
     useSelectAllItems(entries);
   const [searchTerm, setSearchTerm] = React.useState("");
   const [searchFilter, setSearchFilter] = React.useState("access_number");
+  const { isModalAllowed, setIsModalAllowed } = useModal();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,8 +64,14 @@ const ViewBook = () => {
   }, [page, searchFilter, searchTerm]);
 
   React.useEffect(() => {
+    setIsModalAllowed(true);
+
     fetchEntries(page, searchFilter, searchTerm);
   }, []);
+
+  React.useEffect(() => {
+    console.log("isModalAllowed", isModalAllowed);
+  }, [isModalAllowed]);
 
   return (
     <div className={styles.PageWrapper}>
@@ -74,7 +82,7 @@ const ViewBook = () => {
           onChange={setSearchTerm}
           filterChange={(e) => {
             setSearchFilter(e.target.value);
-            console.log(e.target.value);
+            // console.log(e.target.value);
           }}
         >
           <option value="access_number">ACCESS NO.</option>

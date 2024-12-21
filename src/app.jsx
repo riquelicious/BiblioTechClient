@@ -1,8 +1,9 @@
 import React, { lazy } from "react";
 import { createHashRouter, RouterProvider, Navigate } from "react-router-dom";
-
+// import { ipcRenderer } from "electron";
 import styles from "./styles/app.module.css";
 import "./styles/scrollbar.css";
+import "./styles/index.css";
 
 import TitleBar from "./components/TitleBar.jsx";
 
@@ -15,6 +16,8 @@ import {
   BooksWindow,
   RecordsWindow,
 } from "./pages/accounts/AccountsWindow.jsx";
+import { createPortal } from "react-dom";
+import Overlays from "./components/Overlays.jsx";
 
 const InsertBooks = lazy(() => import("./pages/books/InsertBooks.jsx"));
 const UpdateBooks = lazy(() => import("./pages/books/UpdateBooks.jsx"));
@@ -57,6 +60,8 @@ const ViewUserRecords = lazy(() =>
 const ViewAssignedCategory = lazy(() =>
   import("./pages/records/ViewAssignedCategory.jsx")
 );
+
+import { AppProvider, useAccount, useModal } from "./context/AppContext.js";
 
 const router = createHashRouter([
   {
@@ -121,16 +126,81 @@ const router = createHashRouter([
 ]);
 
 function App() {
+  const [requestData, setRequestData] = React.useState({});
+  const { isModalAllowed } = useModal();
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [days, setDays] = React.useState(0);
+  const { user: loginUser } = useAccount();
+
+  const onDecline = () => {
+    console.log("decline");
+    setIsModalOpen(false);
+    setRequestData({});
+    //TODO: decline
+  };
+
+  const onAccept = () => {
+    if (days === "" || days === 0) {
+      alert("Please enter number of days");
+      return;
+    }
+    setIsModalOpen(false);
+    const usrnm = requestData?.user?.data[0][1];
+    const book_id = requestData?.book?.data[0][0];
+    acceptRequest(book_id, usrnm, days);
+    setRequestData({});
+    //TODO: accept
+  };
+
+  const acceptRequest = async (book_id, username, days) => {
+    try {
+      const response = await window.electronAPI.acceptRequest(
+        book_id,
+        username,
+        days
+      );
+      if (response) {
+        console.log(response);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleTextChange = (event) => {
+    setDays(event.target.value);
+  };
+
+  React.useEffect(() => {
+    window.electronAPI.receiveFromMain("request_borrow", (data) => {
+      console.log(data);
+      if (data) {
+        if (isModalAllowed === false) return;
+        setIsModalOpen(true);
+        setRequestData(data);
+      }
+    });
+  }, []);
+
   return (
-    <div className={styles.App}>
-      <TitleBar />
-      <RouterProvider
-        router={router}
-        future={{
-          v7_startTransition: true,
-        }}
+    <>
+      <Overlays
+        isOpen={isModalOpen && isModalAllowed}
+        data={requestData}
+        onAccept={onAccept}
+        onDecline={onDecline}
+        handleTextChange={handleTextChange}
       />
-    </div>
+      <div className={styles.App}>
+        <TitleBar />
+        <RouterProvider
+          router={router}
+          future={{
+            v7_startTransition: true,
+          }}
+        />
+      </div>
+    </>
   );
 }
 

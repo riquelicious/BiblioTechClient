@@ -2,7 +2,23 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("node:path");
 import "./hooks/MenuControls.js";
 import "./API/Database.js";
+import "./API/webhooks.js";
 import { URLPaths } from "./config";
+import { io } from "socket.io-client";
+// Create a new WebSocket instance
+const randomNum = Math.floor(Math.random() * 100000) + 1;
+const socket = io(URLPaths.API_URL, {
+  query: { client_id: `librarian${randomNum}` },
+});
+
+// Listen for connection open
+socket.on("connect", () => {
+  console.log("Connected to server");
+
+  socket.send("Hello Flask Server");
+});
+
+let mainWindow;
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
   app.quit();
@@ -12,7 +28,7 @@ app.commandLine.appendSwitch("disable-component-update");
 const createWindow = () => {
   const nonce = Math.random().toString(36).substring(2, 15);
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     minWidth: 800,
     minHeight: 680,
     width: 1000,
@@ -53,6 +69,11 @@ const createWindow = () => {
 
   //mainWindow.webContents.openDevTools();
 };
+
+socket.on("request_borrow", (data) => {
+  console.log("request_borrow", data);
+  mainWindow.webContents.send("request_borrow", data);
+});
 
 app.whenReady().then(() => {
   createWindow();
